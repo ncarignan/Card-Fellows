@@ -2,6 +2,8 @@
 
 var learn = document.getElementById('learn'),
   paragraph = document.getElementById('paragraph');
+var rules = document.getElementById('rules'),
+  list = document.getElementById('list');
 
 learn.addEventListener('click', function(){
   if (paragraph.style.display == 'none') {
@@ -12,10 +14,6 @@ learn.addEventListener('click', function(){
     list.style.display = 'none';
   }
 }, false);
-
-
-var rules = document.getElementById('rules'),
-  list = document.getElementById('list');
 
 rules.addEventListener('click', function(){
   if (list.style.display == 'none') {
