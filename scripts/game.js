@@ -5,6 +5,13 @@ localStorage.userName = 'SAM';
 // Player.playerObjectArray = [];
 if(!localStorage.playerObjectArray){
   Player.playerObjectArray = [];
+  Player.staticPlayerNameArray = function(){
+    var staticPlayerNameArray = ['Dealer Jeff', 'PlayerAllie', 'PlayerRon', 'PlayerDustinB', 'PlayerAmanda', 'PlayerDustinM', 'PlayerAndrew'];
+    for (var i in staticPlayerNameArray){
+      new Player(staticPlayerNameArray[i]);
+    }
+  };
+  Player.staticPlayerNameArray();
 }else if(localStorage.playerObjectArray){
   Player.playerObjectArray = JSON.parse(localStorage.playerObjectArray);
 }
@@ -67,7 +74,19 @@ for(var i in Player.playerObjectArray){
   }
 };
 
+Card.randomCard = function(){
+  var cardInteger = Math.floor(Math.random() * (52 - 1)) + 1;
+  console.log(cardInteger);
+  Card.cardsPickedThisHand.push(cardInteger);
+  return cardInteger;
+  //declare random, push into cards picked this hand
+};
 
-
-
-//localStorageAlign
+Card.dealerFunction = function(){
+  Card.cardsPickedThisHand = [];
+  for(var i = 0; i < 7; i++){
+    Player.playerObjectArray[i].hand = [];
+    Player.playerObjectArray[i].hand.push(Card.all[Card.randomCard()]);
+    Player.playerObjectArray[i].hand.push(Card.all[Card.randomCard()]);
+  }
+};
