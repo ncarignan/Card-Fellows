@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Card Fellows</title>
-     <link rel = "stylesheet" type = "text/css" href = "master.css" />
+     <link rel = "stylesheet" type = "text/css" href = "styles/master.css" />
   </head>
   <body>
   <header>
@@ -28,32 +28,25 @@
       </form>
 
     <!-- sidebar <div> with contextMenu-->
+    <a href="#" id="learn">Learn</a>
+          <p id = "paragraph" hidden>Learn to Play!  Here at Card Fellows, we understand that not everyone knows how to play Blackjack.  We've constructed a helpful environment where you can play while you learn.  In this site you'll find tips and tricks that will help you understand the game of Blackjack and have while doing so.</p>
 
-    <button onclick="learn()">Learn</button>
-        <div id="learntext">
-          <p>Learn to Play!  Here at Card Fellows, we understand that not everyone knows how to play Blackjack.  We've constructed a helpful environment where you can play while you learn.  In this site you'll find tips and tricks that will help you understand the game of Blackjack and have while doing so.</p>
-        </div>
-
-        <button onclick="rules()">Rules</button>
-            <div id="rulestext">
-              <h2>Basic Blackjack Rules:</h2>
-              <ul>
-                <li>The goal of blackjack is to beat the dealer's hand without going over 21.</li>
-                <li>Face cards are worth 10. Aces are worth 1 or 11, whichever makes a better hand.</li>
-                <li>Each player starts with two cards, one of the dealer's cards is hidden until the end.</li>
-                <li>To 'Hit' is to ask for another card. To 'Stand' is to hold your total and end your turn.</li>
-                <li>If you go over 21 you bust, and the dealer wins regardless of the dealer's hand.</li>
-                <li>If you are dealt 21 from the start (Ace & 10), you got a blackjack.</li>
-                <li>Dealer will hit until his/her cards total 17 or higher.</li>
-              </ul>
-            </div>
+    <a href="#" id="rules">Rules</a>
+        <div id = "list" hidden>
+          <h2>Basic Blackjack Rules:</h2>
+          <ul>
+            <li>The goal of blackjack is to beat the dealer's hand without going over 21.</li>
+            <li>Face cards are worth 10. Aces are worth 1 or 11, whichever makes a better hand.</li>
+            <li>Each player starts with two cards, one of the dealer's cards is hidden until the end.</li>
+            <li>To 'Hit' is to ask for another card. To 'Stand' is to hold your total and end your turn.</li>
+            <li>If you go over 21 you bust, and the dealer wins regardless of the dealer's hand.</li>
+            <li>If you are dealt 21 from the start (Ace & 10), you got a blackjack.</li>
+            <li>Dealer will hit until his/her cards total 17 or higher.</li>
+          </ul>
+      </div>
 
 
   </main>
-
-
-  <script type="text/javascript" src="scripts/app.js">
-
-  </script>
+  <script type="text/javascript" src="scripts/app.js"></script>
   </body>
 </html>
