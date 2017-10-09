@@ -6,10 +6,10 @@ var learn = document.getElementById('learn'),
 learn.addEventListener('click', function(){
   if (paragraph.style.display == 'none') {
     paragraph.style.display = 'block';
-  } else if (paragraph.style.display == 'block') {
-    paragraph.style.display = 'none';
+    list.style.display = 'none';
   } else {
     paragraph.style.display = 'block';
+    list.style.display = 'none';
   }
 }, false);
 
@@ -20,9 +20,9 @@ var rules = document.getElementById('rules'),
 rules.addEventListener('click', function(){
   if (list.style.display == 'none') {
     list.style.display = 'block';
-  } else if (list.style.display == 'block') {
-    list.style.display = 'none';
+    paragraph.style.display = 'none';
   } else {
     list.style.display = 'block';
+    paragraph.style.display = 'none';
   }
 }, false);
