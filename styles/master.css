@@ -5,6 +5,7 @@ body {
 
 header {
   height: 100px;
+  padding-top: 10px;
 }
 
 header ul {
@@ -22,13 +23,13 @@ header ul li {
 header img {
   float: left;
   size: 100px auto;
-  margin-left: 60px;
+  /*margin-left: 60px;*/
   display: block;
 }
 
 main {
   float: right;
-  width: 760px;
+  width: 860px;
   text-align: center;
 }
 
@@ -42,15 +43,20 @@ h2 {
   font-size: 36px;
 }
 
+h3 {
+  font-size: 24px;
+}
+
 nav {
   float: left;
-  width: 200px;
+  width: 100px;
 }
 
 nav a {
-  text-align: center;
+  text-align: left;
+  margin-left: 25px;
   margin-top: 100px;
-  width: 200px;
+  width: 100px;
   display: block;
   text-decoration: none;
 }
