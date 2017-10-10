@@ -1,4 +1,28 @@
-#logo {
-  height: 50px;
-  width: 50px;
+
+
+hr {
+	height: 10px;
+	border: 0;
+	box-shadow: 0 10px 10px -10px #8c8b8b inset;
+}
+
+p {
+  padding: 2em;
+  font-size: 1.25em;
+}
+
+ul {
+  width: 100%;
+}
+
+li {
+  padding: 1em 3.8em;
+  margin: 0;
+  display: inline;
+}
+
+p {
+  padding: 4em;
+  font-size: 1.25em;
+  line-height: 40px;
 }
