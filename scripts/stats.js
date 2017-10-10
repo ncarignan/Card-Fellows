@@ -18,17 +18,21 @@ for (var i = 0; i < playerObjectArray.length; i++){
 // currentUser.losses
 // currentUser.ties
 // currentUser.gamesPlayed
+// currentUser.gameOutcome
 
 function winPercentage(){
-  return (currentUser.wins / currentUser.gamesPlayed) * 100;
+  return (currentUser.wins / (currentUser.wins + currentUser.losses)) * 100;
 }
 
+var player = document.getElementById('player-name');
+var games = document.getElementById('game-history');
+var percentEl = document.getElementById('percentage');
 var welcome = document.getElementById('welcome');
 var losing = document.getElementById('losing');
 var winning = document.getElementById('winning');
 var trend = document.getElementById('trend');
 
-if (currentUser.gamesPlayed < 1) {
+if (currentUser.gamesPlayed < 1){
   welcome.style.display = 'block';
 }
 
@@ -49,3 +53,11 @@ if (currentUser.gamesPlayed > 25){
   losing.style.display = 'none';
   winning.style.display = 'none';
 }
+
+function newElement(type, content, parent){
+  var newEl = document.createElement(type);
+  newEl.textContent = content;
+  parent.appendChild(newEl);
+};
+
+newElement('h1', ('Hello, ' + userName + '!'), player);
