@@ -1,24 +1,26 @@
 'use strict';
 
 localStorage.userName = 'greg';
-
+//declare button id's
 var hitButton = document.getElementById('hitButton');
 var stayButton = document.getElementById('stayButton');
 var splitButton = document.getElementById('splitButton');
+var dealButton = document.getElementById('dealButton');
 
 //constructor for players
 function Player(name){
   this.name = name;
   this.handCards = [];
   this.gameOutcome = [];
+  this.gamesPlayed = 0;
   this.handValue = 0 ;
   this.wins = 0;
   this.losses = 0;
   this.ties = 0;
-  this.gamesPlayed = this.wins + this.losses + this.ties;
   Player.playerObjectArray.push(this);
   localStorage.playerObjectArray = JSON.stringify(Player.playerObjectArray);
 }
+
 
 Player.localStorageAlign = function(){
 //checks to see if dealer and standinplayers were created and creates if needed
@@ -47,6 +49,16 @@ Player.localStorageAlign = function(){
 };
 Player.localStorageAlign();
 
+//function to store the i variable of the current user for reference in Player.playerObjectArray[i];
+Player.currentUser = function(){
+  for(var i in Player.playerObjectArray){
+    // console.log(i);
+    if(Player.playerObjectArray[i].name === localStorage.userName){
+      // console.log('worked');
+      return i;
+    }
+  }
+};
 //constructor function for cards
 Card.all = [];
 function Card(name, suit, value){
@@ -73,16 +85,6 @@ Card.cardCreator();
 
 
 
-//function to store the i variable of the current user for reference in Player.playerObjectArray[i];
-Player.currentUser = function(){
-  for(var i in Player.playerObjectArray){
-  // console.log(i);
-    if(Player.playerObjectArray[i].name === localStorage.userName){
-    // console.log('worked');
-      return i;
-    }
-  }
-};
 //selects a random card's integer and checks to make sure it is unique
 Card.randomCard = function(){
   var cardInteger = Math.floor(Math.random() * (52 - 1)) + 1;
@@ -111,7 +113,6 @@ Card.dealerFunction = function(){
 
 };
 //TODO: add event listener to a button for dealing
-Card.dealerFunction();
 
 //Iterates on dealer and all standin players to play their hand by vegas dealer rules
 Player.playerPlaysHand = function(){
@@ -138,9 +139,9 @@ Player.playerPlaysHand = function(){
 //function that reEvaluates the hand's value
 Player.handSum = function(i){
   Player.playerObjectArray[i].handValue = 0;
-  console.log('reset is Success');
+  // console.log('reset is Success');
   for(var j in Player.playerObjectArray[i].handCards){
-    console.log('sums handCards');
+    // console.log('sums handCards');
     Player.playerObjectArray[i].handValue += Player.playerObjectArray[i].handCards[j].value;
   }
 };
@@ -177,11 +178,67 @@ Player.userGuideRules = function(){
   }
 };
 
-hitButton.addEventListener('click', Player.hitHandler);
 
-Player.hitHandler = function(){
-  Player.playerObjectArray[Player.currentUser()].handCards.push(Card.all[Card.randomCard()]);
+//occurs when player ends turn (stays, busts, gets blackjack). Others play then currentUser compares to dealer
+Player.gameResolution = function(){
+  Player.toggleGameEventListenersOff();
+  Player.playerPlaysHand();
+  Player.handSum(Player.currentUser());
+  if (Player.playerObjectArray[Player.currentUser()].handValue > 21 || Player.playerObjectArray[0].handvalue > Player.playerObjectArray[Player.currentUser()].handvalue){
+    console.log('loss');
+    Player.playerObjectArray[Player.currentUser()].gameOutcome.push('loss');
+    Player.playerObjectArray[Player.currentUser()].losses++;
+    Player.playerObjectArray[Player.currentUser()].gamesPlayed++;
+  }
+  if (Player.playerObjectArray[Player.currentUser()].handValue <= 21 && Player.playerObjectArray[0].handvalue < Player.playerObjectArray[Player.currentUser()].handvalue){
+    console.log('win');
+    Player.playerObjectArray[Player.currentUser()].gameOutcome.push('win');
+    Player.playerObjectArray[Player.currentUser()].wins++;
+    Player.playerObjectArray[Player.currentUser()].gamesPlayed++;
+  }else {
+    Player.playerObjectArray[Player.currentUser()].gameOutcome.push('loss');
+    Player.playerObjectArray[Player.currentUser()].losses++;
+    Player.playerObjectArray[Player.currentUser()].gamesPlayed++;
+  }
 };
 
+Player.hitHandler = function(){
+  console.log('hit');
+  Player.playerObjectArray[Player.currentUser()].handCards.push(Card.all[Card.randomCard()]);
+  Player.handSum(Player.currentUser());
+  console.log(Player.playerObjectArray[Player.currentUser()]);
+  if (Player.playerObjectArray[Player.currentUser()].handValue >= 21){
+    Player.gameResolution();
+  }
 
+};
+
+Player.stayHandler = function(){
+  console.log('stay');
+  Player.gameResolution();
+};
+
+Player.splitHandler = function(){
+  console.log('split');
+};
+
+//deals out cards and turns on hit/stay
+Player.dealHandler = function(){
+  console.log('deal');
+  Player.toggleGameEventListenersOn();
+  Card.dealerFunction();
+};
+
+dealButton.addEventListener('click', Player.dealHandler);
+
+Player.toggleGameEventListenersOn = function(){
+  hitButton.addEventListener('click', Player.hitHandler);
+  stayButton.addEventListener('click', Player.stayHandler);
+  splitButton.addEventListener('click', Player.splitHandler);
+};
+Player.toggleGameEventListenersOff = function(){
+  hitButton.removeEventListener('click', Player.hitHandler);
+  stayButton.removeEventListener('click', Player.stayHandler);
+  splitButton.removeEventListener('click', Player.splitHandler);
+};
 //todo add a card box with number and color of card type absoluted into corners
