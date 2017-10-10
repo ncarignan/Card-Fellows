@@ -1,6 +1,5 @@
 'use strict';
 
-localStorage.userName = 'greg';
 //declare button id's
 var hitButton = document.getElementById('hitButton');
 var stayButton = document.getElementById('stayButton');
