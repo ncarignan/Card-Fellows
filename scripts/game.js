@@ -5,6 +5,7 @@ var hitButton = document.getElementById('hitButton');
 var stayButton = document.getElementById('stayButton');
 var splitButton = document.getElementById('splitButton');
 var dealButton = document.getElementById('dealButton');
+var dealerHand = document.getElementById('dealerhand');
 
 //constructor for players
 function Player(name){
@@ -19,7 +20,6 @@ function Player(name){
   Player.playerObjectArray.push(this);
   localStorage.playerObjectArray = JSON.stringify(Player.playerObjectArray);
 }
-
 
 Player.localStorageAlign = function(){
 //checks to see if dealer and standinplayers were created and creates if needed
@@ -58,6 +58,7 @@ Player.currentUser = function(){
     }
   }
 };
+
 //constructor function for cards
 Card.all = [];
 function Card(name, suit, value){
@@ -69,7 +70,7 @@ function Card(name, suit, value){
 
 //card values and names
 Card.valueArray = [2,3,4,5,6,7,8,9,10,10,10,10,11];
-Card.nameArray = ['Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King', 'Ace'];
+Card.nameArray = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'Jack', 'Queen', 'King', 'Ace'];
 
 //builds all the cards
 Card.cardCreator = function(){
@@ -82,7 +83,59 @@ Card.cardCreator = function(){
 };
 Card.cardCreator();
 
+//print a card to the screen
+Card.printCard = function(suit, name) {
+  var outerDiv = document.createElement('div');
+  var innerDiv = document.createElement('div');
+  var topLeftP = document.createElement('p');
+  var topRightP = document.createElement('p');
+  var bottomLeftP = document.createElement('p');
+  var bottomRightP = document.createElement('p');
 
+  dealerHand.appendChild(outerDiv);
+  outerDiv.appendChild(innerDiv);
+  innerDiv.appendChild(topLeftP);
+  innerDiv.appendChild(topRightP);
+  innerDiv.appendChild(bottomLeftP);
+  innerDiv.appendChild(bottomRightP);
+
+  topLeftP.id = 'topleft';
+  topRightP.id = 'topright';
+  bottomLeftP.id = 'bottomleft';
+  bottomRightP.id = 'bottomright';
+
+  topRightP.className += 'bigger';
+  bottomLeftP.className += 'bigger';
+  outerDiv.id = 'outerbox';
+
+  switch (suit) {
+  case 'spades':
+    topRightP.innerHTML = '&spades;';
+    bottomLeftP.innerHTML = '&spades;';
+    innerDiv.id = 'innerbox';
+    break;
+  case 'diamonds':
+    topRightP.innerHTML = '&diams;';
+    bottomLeftP.innerHTML = '&diams;';
+    innerDiv.id = 'innerboxr';
+    break;
+  case 'clubs':
+    topRightP.innerHTML = '&clubs;';
+    bottomLeftP.innerHTML = '&clubs;';
+    innerDiv.id = 'innerbox';
+    break;
+  case 'hearts':
+    topRightP.innerHTML = '&hearts;';
+    bottomLeftP.innerHTML = '&hearts;';
+    innerDiv.id = 'innerboxr';
+    break;
+  default:
+    topRightP.innerHTML = '&spades;';
+    bottomLeftP.innerHTML = '&spades;';
+  }
+  topLeftP.innerHTML = '&lt;' + name + '&gt;';
+  bottomRightP.innerHTML = '&lt;/' + name + '&gt;';
+};
 
 //selects a random card's integer and checks to make sure it is unique
 Card.randomCard = function(){
