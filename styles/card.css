@@ -1,0 +1,65 @@
+#outerbox {
+  height: 350px;
+  width: 250px;
+  background-color: black;
+  background: -webkit-linear-gradient(left top, rgb(70,70,70), rgb(0,0,0)); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, rgb(70,70,70), rgb(0,0,0)); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, rgb(70,70,70), rgb(0,0,0)); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right, rgb(70,70,70), rgb(0,0,0)); /* Standard syntax */
+}
+
+.stripebox {
+  height: 336px;
+  width: 236px;
+  background-color: rgb(30,30,30);
+  background: -webkit-linear-gradient(left top, rgb(200,200,200), rgb(130,130,130)); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, rgb(200,200,200), rgb(130,130,130)); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, rgb(200,200,200), rgb(130,130,130)); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right, rgb(200,200,200), rgb(130,130,130)); /* Standard syntax */
+  margin: 7px;
+  margin-top: 7px;
+}
+
+.innerbox {
+  font-size: 2em;
+  height: 322px;
+  width: 222px;
+  color: cyan;
+  background-color: black;
+  background: -webkit-linear-gradient(left top, rgb(70,70,70), rgb(0,0,0)); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, rgb(70,70,70), rgb(0,0,0)); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, rgb(70,70,70), rgb(0,0,0)); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right, rgb(70,70,70), rgb(0,0,0)); /* Standard syntax */
+  margin: 7px;
+  margin-top: 7px;
+}
+
+#topleft {
+  float: left;
+  margin:
+}
+
+#topright {
+  float: right;
+  margin-top: 0
+}
+
+#bottomleft {
+  float: left;
+  clear: both;
+  margin-top: 88%;
+}
+
+#bottomright {
+  float: right;
+  margin-top: 93.5%;
+}
+
+p {
+  margin: .3em;
+  display: inline-block;
+}
+
+.bigger {
+  font-size: 1.5em;
+}
