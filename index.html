@@ -10,8 +10,8 @@
     <nav>
       <h1>Card Fellows</h1>
         <ul>
-          <li><a href="html/stats.html">Scores</a></li>
-          <li><a href="html/game.html">Play Now</a></li>
+          <li id="scores" hidden><a href="html/stats.html">Scores</a></li>
+          <li id="play" hidden><a href="html/game.html">Play Now</a></li>
           <li><a href="index.html">Home</a></li>
         </ul>
     </nav>
@@ -19,13 +19,19 @@
 
   <main>
     <!-- get started  -->
-    <a href="html/game.html"><button type="button" name="button">Get Started</button></a>
+    <div id="welcome">
+    </div>
+
+    <a href="html/game.html"><button id="get-started" type="button" name="button" hidden>Get Started</button></a>
 
     <!-- Register/Login -->
-      <form id = "login" class="#" action="index.html" method="post">
+      <form id = "login" class="#" action="index.html" method="post" style="block">
         <input type="text" name="username" value="">
         <button type="submit">Register/Login</button>
       </form>
+
+
+      <button id="change-user" type="button" name="button" hidden>Change User</button>
 
     <!-- sidebar <div> with contextMenu-->
         <div>
