@@ -1,7 +1,69 @@
-/** {
-  border: solid, 1px, red;
-}*/
+body {
+  width: 960px;
+  margin: 0 auto;
+}
+
+header {
+  height: 100px;
+}
+
+header ul {
+  float: right;
+  display: inline-block;
+  margin-top: 40px;
+}
+
+header ul li {
+  float: right;
+  display: inline-block;
+  margin-left: 60px;
+}
+
+header img {
+  float: left;
+  size: 100px auto;
+  margin-left: 60px;
+  display: block;
+}
+
+main {
+  float: right;
+  width: 760px;
+  text-align: center;
+}
 
 h1 {
-  font-size: 6em;
+  font-size: 50px;
+  margin: 100px;
+  margin-bottom: 50px;
+}
+
+h2 {
+  font-size: 36px;
+}
+
+nav {
+  float: left;
+  width: 200px;
+}
+
+nav a {
+  text-align: center;
+  margin-top: 100px;
+  width: 200px;
+  display: block;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: rgb(53, 186, 137);
+
+}
+
+button {
+  margin: 25px auto;
+}
+
+a {
+  text-decoration: none;
 }

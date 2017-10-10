@@ -3,21 +3,27 @@
   <head>
     <meta charset="utf-8">
     <title>Card Fellows</title>
-     <link rel = "stylesheet" type = "text/css" href = "styles/master.css" />
+    <link rel = "stylesheet" type = "text/css" href = "styles/reset.css" />
+    <link rel = "stylesheet" type = "text/css" href = "styles/master.css" />
   </head>
   <body>
-  <header>
+    <header>
+      <img src="resources/logo_large.png" alt="" height="100px">
+      <ul>
+        <li id="scores" hidden><a href="html/stats.html">Scores</a></li>
+        <li id="play" hidden><a href="html/game.html">Play Now</a></li>
+        <li><a href="index.html">Home</a></li>
+      </ul>
+    </header>
+
     <nav>
-      <h1>Card Fellows</h1>
-        <ul>
-          <li id="scores" hidden><a href="html/stats.html">Scores</a></li>
-          <li id="play" hidden><a href="html/game.html">Play Now</a></li>
-          <li><a href="index.html">Home</a></li>
-        </ul>
+      <a href="#" id="entry">Sign In</a>
+      <a href="#" id="learn">Learn</a>
+      <a href="#" id="rules">Rules</a>
     </nav>
-  </header>
 
   <main>
+    <h1>Card Fellows</h1>
     <!-- get started  -->
     <div id="sign-in">
 
@@ -36,14 +42,7 @@
         <button id="change-user" type="button" name="button" hidden>Change User</button>
     </div>
 
-    <!-- sidebar <div> with contextMenu-->
-      <div>
-        <a href="#" id="entry">Sign In</a>
-        <a href="#" id="learn">Learn</a>
-        <a href="#" id="rules">Rules</a>
-      </div>
-
-        <p id = "paragraph" hidden>Learn to Play!  Here at Card Fellows, we understand that not everyone knows how to play Blackjack.  We've constructed a helpful environment where you can play while you learn.  In this site you'll find tips and tricks that will help you understand the game of Blackjack and have while doing so.</p>
+        <p id = "paragraph" hidden>Learn to Play!  Here at Card Fellows, we understand that not everyone knows how to play Blackjack.  We've constructed a helpful environment where you can play while you learn.  In this site you'll find tips and tricks that will help you understand the game of Blackjack and have while doing so. Sign in to get started!</p>
 
       <div id = "list" hidden>
           <h2>Basic Blackjack Rules:</h2>

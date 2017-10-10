@@ -17,6 +17,8 @@ if (localStorage.userName) {
   var userName = localStorage.userName;
   doStuff();
 } else {
+  play.style.display = 'none';
+  scores.style.display = 'none';
   userName = null;
 }
 
