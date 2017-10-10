@@ -183,18 +183,25 @@ Player.gameResolution = function(){
   Player.toggleGameEventListenersOff();
   Player.playerPlaysHand();
   Player.handSum(Player.currentUser());
-  if (Player.playerObjectArray[Player.currentUser()].handValue > 21 || Player.playerObjectArray[0].handvalue > Player.playerObjectArray[Player.currentUser()].handvalue){
+  console.log('players hand is ' + Player.playerObjectArray[Player.currentUser()].handValue);
+  console.log('dealer hand is ' + Player.playerObjectArray[0].handValue);
+  if (Player.playerObjectArray[Player.currentUser()].handValue > 21 || Player.playerObjectArray[0].handValue > Player.playerObjectArray[Player.currentUser()].handvalue){
     console.log('loss');
     Player.playerObjectArray[Player.currentUser()].gameOutcome.push('loss');
     Player.playerObjectArray[Player.currentUser()].losses++;
     Player.playerObjectArray[Player.currentUser()].gamesPlayed++;
-  }
-  if (Player.playerObjectArray[Player.currentUser()].handValue <= 21 && Player.playerObjectArray[0].handvalue < Player.playerObjectArray[Player.currentUser()].handvalue){
+  }else if(Player.playerObjectArray[0].handValue > 21){
+    console.log('win');
+    Player.playerObjectArray[Player.currentUser()].gameOutcome.push('win');
+    Player.playerObjectArray[Player.currentUser()].wins++;
+    Player.playerObjectArray[Player.currentUser()].gamesPlayed++;
+  }else if(Player.playerObjectArray[Player.currentUser()].handValue <= 21 && Player.playerObjectArray[0].handValue < Player.playerObjectArray[Player.currentUser()].handvalue){
     console.log('win');
     Player.playerObjectArray[Player.currentUser()].gameOutcome.push('win');
     Player.playerObjectArray[Player.currentUser()].wins++;
     Player.playerObjectArray[Player.currentUser()].gamesPlayed++;
   }else {
+    console.log('loss');
     Player.playerObjectArray[Player.currentUser()].gameOutcome.push('loss');
     Player.playerObjectArray[Player.currentUser()].losses++;
     Player.playerObjectArray[Player.currentUser()].gamesPlayed++;
