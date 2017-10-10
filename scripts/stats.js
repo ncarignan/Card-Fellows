@@ -61,3 +61,7 @@ function newElement(type, content, parent){
 };
 
 newElement('h1', ('Hello, ' + userName + '!'), player);
+
+
+
+newElement('h1', ('Win Percentage: ' + winsVsLosses + '%'), percentEl);
