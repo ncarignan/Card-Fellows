@@ -19,29 +19,33 @@
 
   <main>
     <!-- get started  -->
-    <div id="welcome">
+    <div id="sign-in">
+
+      <div id="welcome">
+      </div>
+
+      <a href="html/game.html"><button id="get-started" type="button" name="button" hidden>Get Started</button></a>
+
+      <!-- Register/Login -->
+        <form id = "login" class="#" action="index.html" method="post" style="block">
+          <input type="text" name="username" value="">
+          <button type="submit">Register/Login</button>
+        </form>
+
+
+        <button id="change-user" type="button" name="button" hidden>Change User</button>
     </div>
 
-    <a href="html/game.html"><button id="get-started" type="button" name="button" hidden>Get Started</button></a>
-
-    <!-- Register/Login -->
-      <form id = "login" class="#" action="index.html" method="post" style="block">
-        <input type="text" name="username" value="">
-        <button type="submit">Register/Login</button>
-      </form>
-
-
-      <button id="change-user" type="button" name="button" hidden>Change User</button>
-
     <!-- sidebar <div> with contextMenu-->
-        <div>
-          <a href="#" id="learn">Learn</a>
-          <a href="#" id="rules">Rules</a>
-        </div>
+      <div>
+        <a href="#" id="entry">Sign In</a>
+        <a href="#" id="learn">Learn</a>
+        <a href="#" id="rules">Rules</a>
+      </div>
 
-          <p id = "paragraph" hidden>Learn to Play!  Here at Card Fellows, we understand that not everyone knows how to play Blackjack.  We've constructed a helpful environment where you can play while you learn.  In this site you'll find tips and tricks that will help you understand the game of Blackjack and have while doing so.</p>
+        <p id = "paragraph" hidden>Learn to Play!  Here at Card Fellows, we understand that not everyone knows how to play Blackjack.  We've constructed a helpful environment where you can play while you learn.  In this site you'll find tips and tricks that will help you understand the game of Blackjack and have while doing so.</p>
 
-        <div id = "list" hidden>
+      <div id = "list" hidden>
           <h2>Basic Blackjack Rules:</h2>
           <ul>
             <li>The goal of blackjack is to beat the dealer's hand without going over 21.</li>
