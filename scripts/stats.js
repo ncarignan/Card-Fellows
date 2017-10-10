@@ -4,6 +4,7 @@
 var userName = localStorage.userName;
 var currentUser = null;
 var playerObjectArray = JSON.parse(localStorage.playerObjectArray);
+var winsVsLosses = null;
 
 for (var i = 0; i < playerObjectArray.length; i++){
   if(playerObjectArray[i].name === userName){
@@ -31,11 +32,15 @@ if (currentUser.gamesPlayed < 1) {
   welcome.style.display = 'block';
 }
 
-if (winPercentage() <= 50){
+if (currentUser.gamesPlayed > 0){
+  winsVsLosses = winPercentage();
+}
+
+if (winsVsLosses <= 50){
   losing.style.display = 'block';
 }
 
-if (winPercentage() > 50){
+if (winsVsLosses > 50){
   winning.style.display = 'block';
 }
 
