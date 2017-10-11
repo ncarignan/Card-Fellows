@@ -5,8 +5,8 @@ var hitButton = document.getElementById('hitButton');
 var stayButton = document.getElementById('stayButton');
 var splitButton = document.getElementById('splitButton');
 var dealButton = document.getElementById('dealButton');
-var computer0Hand = document.getElementById('dealerhand');
 var playerHand = document.getElementById('playerhand');
+Player.computer0Hand = document.getElementById('dealerhand');
 Player.computer1Hand = document.getElementById('computer1Hand');
 Player.computer2Hand = document.getElementById('computer2Hand');
 Player.computer3Hand = document.getElementById('computer3Hand');
@@ -54,10 +54,8 @@ function Player(name, handLoc){
 
 //function to store the i variable of the current user for reference in Player.playerObjectArray[i];
 Player.currentUser = function(){
-  for(var i in Player.playerObjectArray){
-    // console.log(i);
+  for(var i = 7; i < Player.playerObjectArray.length; i++){
     if(Player.playerObjectArray[i].name === localStorage.userName){
-      // console.log('worked');
       return i;
     }
   }
@@ -165,9 +163,7 @@ Card.dealerFunction = function(){
   Player.playerObjectArray[Player.currentUser()].handCards.push(Card.randomCard());
   Player.playerObjectArray[Player.currentUser()].handCards.push(Card.randomCard());
 
-  Card.printCard(computer0Hand, Player.playerObjectArray[0].handCards[1][0].suit , Player.playerObjectArray[0].handCards[1][0].name);
-
-  for (var j = 1; j < 7; i++){
+  for (var j = 0; j < 7; i++){
     Card.printCard(eval('Player.computer' + j + 'Hand'), Player.playerObjectArray[j].handCards[1][0].suit , Player.playerObjectArray[j].handCards[1][0].name);
   }
 
@@ -292,7 +288,9 @@ Player.splitHandler = function(){
 Player.dealHandler = function(){
   Card.cardCreator();
   playerHand.innerHTML = null;
-  computer0Hand.innerHTML = null;
+  for (var i in staticPlayerNameArray){
+    eval('Player.computer' + i + 'Hand').innerHTML = null;
+  }
   console.log('deal');
   Player.toggleGameEventListenersOn();
   Card.dealerFunction();
@@ -310,4 +308,3 @@ Player.toggleGameEventListenersOff = function(){
   stayButton.removeEventListener('click', Player.stayHandler);
   splitButton.removeEventListener('click', Player.splitHandler);
 };
-//todo add a card box with number and color of card type absoluted into corners
