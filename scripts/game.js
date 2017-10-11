@@ -156,7 +156,7 @@ Card.randomCard = function(){
 //populates gives dealer and standin players cards and Player cards
 Card.dealerFunction = function(){
   Card.cardsPickedThisHand = [];
-  for(var i = 0; i < 7; i++){
+  for (var i = 0; i < 7; i++){
     Player.playerObjectArray[i].handCards = [];
     Player.playerObjectArray[i].handCards.push(Card.randomCard());
     Player.playerObjectArray[i].handCards.push(Card.randomCard());
@@ -165,7 +165,12 @@ Card.dealerFunction = function(){
   Player.playerObjectArray[Player.currentUser()].handCards.push(Card.randomCard());
   Player.playerObjectArray[Player.currentUser()].handCards.push(Card.randomCard());
 
-  Card.printCard(computer0Hand, Player.playerObjectArray[0].handCards[0][0].suit , Player.playerObjectArray[0].handCards[0][0].name);
+  Card.printCard(computer0Hand, Player.playerObjectArray[0].handCards[1][0].suit , Player.playerObjectArray[0].handCards[1][0].name);
+
+  for (var j = 1; j < 7; i++){
+    Card.printCard(eval('Player.computer' + j + 'Hand'), Player.playerObjectArray[j].handCards[1][0].suit , Player.playerObjectArray[j].handCards[1][0].name);
+  }
+
   Card.printCard(playerHand, Player.playerObjectArray[Player.currentUser()].handCards[0][0].suit, Player.playerObjectArray[Player.currentUser()].handCards[0][0].name);
   Card.printCard(playerHand, Player.playerObjectArray[Player.currentUser()].handCards[1][0].suit, Player.playerObjectArray[Player.currentUser()].handCards[1][0].name);
 };
