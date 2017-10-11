@@ -94,44 +94,39 @@ Card.printCard = function(hand, suit, name) {
   innerDiv.appendChild(bottomLeftP);
   innerDiv.appendChild(bottomRightP);
 
-  topLeftP.className += 'topleft';
-  topRightP.className += 'topright';
-  bottomLeftP.className += 'bottomleft';
-  bottomRightP.className += 'bottomright';
-  topLeftP.className += 'corner';
-  topRightP.className += 'corner';
-  bottomLeftP.className += 'corner';
-  bottomRightP.className += 'corner';
+  topLeftP.classList.add('topleft');
+  topRightP.classList.add('topright');
+  bottomLeftP.classList.add('bottomleft');
+  bottomRightP.classList.add('bottomright');
+  topLeftP.classList.add('corner');
+  topRightP.classList.add('corner');
+  bottomLeftP.classList.add('corner');
+  bottomRightP.classList.add('corner');
 
-  topRightP.className += 'bigger';
-  bottomLeftP.className += 'bigger';
-  outerDiv.className += 'outerbox';
+  topRightP.classList.add('bigger');
+  bottomLeftP.classList.add('bigger');
+  outerDiv.classList.add('outerbox');
 
   switch (suit) {
-  case 'spades':
-    topRightP.innerHTML = '&spades;';
-    bottomLeftP.innerHTML = '&spades;';
-    innerDiv.className += 'innerbox';
-    break;
   case 'diamonds':
     topRightP.innerHTML = '&diams;';
     bottomLeftP.innerHTML = '&diams;';
-    innerDiv.className += 'innerboxr';
+    innerDiv.classList.add('innerboxr');
     break;
   case 'clubs':
     topRightP.innerHTML = '&clubs;';
     bottomLeftP.innerHTML = '&clubs;';
-    innerDiv.className += 'innerbox';
+    innerDiv.classList.add('innerbox');
     break;
   case 'hearts':
     topRightP.innerHTML = '&hearts;';
     bottomLeftP.innerHTML = '&hearts;';
-    innerDiv.className += 'innerboxr';
+    innerDiv.classList.add('innerboxr');
     break;
   default:
     topRightP.innerHTML = '&spades;';
     bottomLeftP.innerHTML = '&spades;';
-    innerDiv.className += 'innerbox';
+    innerDiv.classList.add('innerbox');
   }
   topLeftP.innerHTML = '&lt;' + name + '&gt;';
   bottomRightP.innerHTML = '&lt;/' + name + '&gt;';
