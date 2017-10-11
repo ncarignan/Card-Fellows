@@ -30,7 +30,19 @@ var section = document.getElementById('section');
 // Get userName + game info/Set globals
 var userName = localStorage.userName;
 var currentUser = null;
-var playerObjectArray = JSON.parse(localStorage.playerObjectArray);
+if (localStorage.playerObjectArray){
+  var playerObjectArray = JSON.parse(localStorage.playerObjectArray);
+} else {
+  playerObjectArray = {name: localStorage.userName,
+    handCards: [],
+    gameOutcome: [],
+    gamesPlayed: 0,
+    handValue: 0 ,
+    wins: 0,
+    losses: 0,
+    ties: 0};
+  currentUser = playerObjectArray;
+}
 var winsVsLosses = null;
 
 // Match userName with relevant player history
@@ -106,16 +118,16 @@ function newElement(type, content, parent){
 //Generate game history info
 newElement('h1', ('Hello, ' + userName + '!'), player);
 
-//Display no more than the 25 past games
-if (currentUser.gamesPlayed <= 25){
-  for (var j = 0; j < currentUser.gamesPlayed; j++){
-    newElement('li', ('Game ' + (j + 1) + ' ..............................................................................................................' + currentUser.gameOutcome[j]), games);
-  }
-} else {
-  for (var k = (currentUser.gamesPlayed - 25); k < currentUser.gamesPlayed; k++){
-    newElement('li', ('Game ' + (k + 1) + ' ..............................................................................................................' + currentUser.gameOutcome[k]), games);
-  }
-}
+//Display game history
+// if (currentUser.gamesPlayed <= 25){
+for (var j = 0; j < currentUser.gamesPlayed; j++){
+  newElement('li', ('Game ' + (j + 1) + ' ..............................................................................................................' + currentUser.gameOutcome[j]), games);
+};
+// } else {
+//   for (var k = (currentUser.gamesPlayed - 25); k < currentUser.gamesPlayed; k++){
+//     newElement('li', ('Game ' + (k + 1) + ' ..............................................................................................................' + currentUser.gameOutcome[k]), games);
+//   }
+// }
 
 
 newElement('h1', ('Win Percentage: ' + winsVsLosses + '%'), percentEl);
