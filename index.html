@@ -1,63 +1,53 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Card Fellows</title>
-    <link rel = "stylesheet" type = "text/css" href = "styles/reset.css" />
-    <link rel = "stylesheet" type = "text/css" href = "styles/master.css" />
-  </head>
-  <body>
-    <header>
-      <img src="resources/logo_large.png" alt="" height="100px">
+<head>
+  <meta charset="utf-8">
+  <title>Card Fellows</title>
+  <link rel = "stylesheet" type = "text/css" href = "styles/reset.css" />
+  <link rel = "stylesheet" type = "text/css" href = "styles/master.css" />
+</head>
+<body>
+  <header>
+    <img src="resources/logo_large.png" alt="" height="100px">
+    <ul>
+      <li id="scores" hidden><a href="html/stats.html">Stats</a></li>
+      <li id="play" hidden><a href="html/game.html">Play</a></li>
+      <li><a href="index.html">Home</a></li>
+    </ul>
+  </header>
+  <nav>
+    <a href="#" id="entry">Sign In</a>
+    <a href="#" id="learn">Learn</a>
+    <a href="#" id="rules">Rules</a>
+    <a href="html/about_us.html" id="about">About</a>
+  </nav>
+  <main>
+    <h1>Card Fellows</h1>
+    <div id="sign-in">
+    <div id="welcome"></div>
+      <a href="html/game.html"><button id="get-started" type="button" name="button" hidden>Get Started</button></a>
+      <form id = "login" class="#" action="index.html" method="post" style="block">
+        <input type="text" name="username" value="">
+        <button type="submit">Register/Login</button>
+      </form>
+      <button id="change-user" type="button" name="button" hidden>Change User</button>
+    </div>
+    <p id="paragraph" hidden>
+        Learn to Play!  Here at Card Fellows, we understand that not everyone knows how to play Blackjack.  We've constructed a helpful environment where you can play while you learn.  In this site you'll find tips and tricks that will help you understand the game of Blackjack and have fun while doing so.<br/><br/>Sign in to get started!
+    </p>
+    <div id="list" hidden>
+      <h3>Basic Blackjack Rules:</h3>
       <ul>
-        <li id="scores" hidden><a href="html/stats.html">Stats</a></li>
-        <li id="play" hidden><a href="html/game.html">Play</a></li>
-        <li><a href="index.html">Home</a></li>
+        <li>The goal of blackjack is to beat the dealer's hand without going over 21.</li>
+        <li>Face cards are worth 10. Aces are worth 1 or 11, whichever makes a better hand.</li>
+        <li>Each player starts with two cards, one of the dealer's cards is hidden until the end.</li>
+        <li>To 'Hit' is to ask for another card. To 'Stand' is to hold your total and end your turn.</li>
+        <li>If you go over 21 you bust, and the dealer wins regardless of the dealer's hand.</li>
+        <li>If you are dealt 21 from the start (Ace & 10), you got a blackjack.</li>
+        <li>Dealer will hit until his/her cards total 17 or higher.</li>
       </ul>
-    </header>
-
-    <nav>
-      <a href="#" id="entry">Sign In</a>
-      <a href="#" id="learn">Learn</a>
-      <a href="#" id="rules">Rules</a>
-    </nav>
-
-    <main>
-      <h1>Card Fellows</h1>
-      <!-- get started  -->
-      <div id="sign-in">
-
-        <div id="welcome">
-        </div>
-
-        <a href="html/game.html"><button id="get-started" type="button" name="button" hidden>Get Started</button></a>
-
-        <!-- Register/Login -->
-          <form id = "login" class="#" action="index.html" method="post" style="block">
-            <input type="text" name="username" value="">
-            <button type="submit">Register/Login</button>
-          </form>
-
-          <button id="change-user" type="button" name="button" hidden>Change User</button>
-      </div>
-
-      <p id = "paragraph" hidden>
-          Learn to Play!  Here at Card Fellows, we understand that not everyone knows how to play Blackjack.  We've constructed a helpful environment where you can play while you learn.  In this site you'll find tips and tricks that will help you understand the game of Blackjack and have fun while doing so.<br/><br/>Sign in to get started!
-      </p>
-
-      <div id = "list" hidden>
-          <h3>Basic Blackjack Rules:</h3>
-          <ul>
-            <li>The goal of blackjack is to beat the dealer's hand without going over 21.</li>
-            <li>Face cards are worth 10. Aces are worth 1 or 11, whichever makes a better hand.</li>
-            <li>Each player starts with two cards, one of the dealer's cards is hidden until the end.</li>
-            <li>To 'Hit' is to ask for another card. To 'Stand' is to hold your total and end your turn.</li>
-            <li>If you go over 21 you bust, and the dealer wins regardless of the dealer's hand.</li>
-            <li>If you are dealt 21 from the start (Ace & 10), you got a blackjack.</li>
-            <li>Dealer will hit until his/her cards total 17 or higher.</li>
-          </ul>
-      </div>
-    </main>
-    <script type="text/javascript" src="scripts/app.js"></script>
-  </body>
+    </div>
+  </main>
+<script type="text/javascript" src="scripts/app.js"></script>
+</body>
 </html>
