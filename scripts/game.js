@@ -22,32 +22,27 @@ function Player(name){
   localStorage.playerObjectArray = JSON.stringify(Player.playerObjectArray);
 }
 
-Player.localStorageAlign = function(){
+(Player.localStorageAlign = function(){
 //checks to see if dealer and standinplayers were created and creates if needed
   if(!localStorage.playerObjectArray){
     Player.playerObjectArray = [];
     Player.staticPlayerNameArray = function(){
-      var staticPlayerNameArray = ['Dealer', 'Player1', 'Player5', 'Player2', 'Player3', 'Player4', 'Player5'];
+      var staticPlayerNameArray = ['Dealer', 'Player1', 'Player2', 'Player3', 'Player4', 'Player5', 'Player6'];
       for (var i in staticPlayerNameArray){
         new Player(staticPlayerNameArray[i]);
       }
     };
     Player.staticPlayerNameArray();
-  }else if(localStorage.playerObjectArray){
+  }else{
     Player.playerObjectArray = JSON.parse(localStorage.playerObjectArray);
   }
+
   // if username does not have an object, creates one with name of username
   if(localStorage.userName && !localStorage.playerObjectArray.includes(localStorage.userName)){
     // console.log('creating new user object');
     new Player(localStorage.userName);
   }
-  //pull down playerObjectArray formlocStor if it exists
-  if(localStorage.playerObjectArray){ //this function works
-    // console.log('worked');
-    Player.playerObjectArray = JSON.parse(localStorage.playerObjectArray);
-  }
-};
-Player.localStorageAlign();
+})();
 
 //function to store the i variable of the current user for reference in Player.playerObjectArray[i];
 Player.currentUser = function(){
