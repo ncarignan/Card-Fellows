@@ -23,7 +23,6 @@ header ul li {
 header img {
   float: left;
   size: 100px auto;
-  /*margin-left: 60px;*/
   display: block;
 }
 
@@ -72,4 +71,5 @@ button {
 
 a {
   text-decoration: none;
+  color: black;
 }
