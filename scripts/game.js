@@ -6,6 +6,8 @@ var stayButton = document.getElementById('stayButton');
 var splitButton = document.getElementById('splitButton');
 var dealButton = document.getElementById('dealButton');
 var playerHand = document.getElementById('playerhand');
+var buttonHolder = document.getElementById('buttonHolder');
+var staticPlayerNameArray = ['Dealer', 'Player1', 'Player2', 'Player3', 'Player4', 'Player5', 'Player6'];
 Player.computer0Hand = document.getElementById('dealerhand');
 Player.computer1Hand = document.getElementById('computer1Hand');
 Player.computer2Hand = document.getElementById('computer2Hand');
@@ -35,7 +37,6 @@ function Player(name, handLoc){
   if(!localStorage.playerObjectArray){
     Player.playerObjectArray = [];
     Player.staticPlayerNameArray = function(){
-      var staticPlayerNameArray = ['Dealer', 'Player1', 'Player2', 'Player3', 'Player4', 'Player5', 'Player6'];
       for (var i in staticPlayerNameArray){
         new Player(staticPlayerNameArray[i], eval('Player.computer' + i + 'Hand'));
       }
@@ -84,12 +85,6 @@ Card.nameArray = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A'];
     new Card(Card.nameArray[i], 'clubs', Card.valueArray[i]);
   }
 })();
-
-// function newElement(type, content, parent){
-//   var newEl = document.createElement(type);
-//   newEl.textContent = content;
-//   parent.appendChild(newEl);
-// };
 
 //print a card to the screen
 Card.printCard = function(hand, suit, name){
@@ -169,8 +164,11 @@ Card.dealerFunction = function(){
 
   Card.printCard(playerHand, Player.playerObjectArray[Player.currentUser()].handCards[0][0].suit, Player.playerObjectArray[Player.currentUser()].handCards[0][0].name);
   Card.printCard(playerHand, Player.playerObjectArray[Player.currentUser()].handCards[1][0].suit, Player.playerObjectArray[Player.currentUser()].handCards[1][0].name);
+
+  if (Player.playerObjectArray[Player.currentUser()].handCards[0].name === Player.playerObjectArray[Player.currentUser()].handCards[1].name){
+    splitButton.style.display = 'block';
+  }
 };
-//TODO: add event listener to a button for dealing
 
 //Iterates on dealer and all standin players to play their hand by vegas dealer rules
 Player.computerPlaysHand = function(){
@@ -183,6 +181,7 @@ Player.computerPlaysHand = function(){
     }
   }
 };
+
 //function that reEvaluates the hand's value
 Player.handSum = function(i){
   Player.playerObjectArray[i].handValue = 0;
@@ -225,33 +224,38 @@ Player.userGuideRules = function(){
   }
 };
 
+function newElement(type, content, parent){
+  var newEl = document.createElement(type);
+  newEl.textContent = content;
+  parent.appendChild(newEl);
+};
 
 //occurs when player ends turn (stays, busts, gets blackjack). Others play then currentUser compares to dealer
 Player.gameResolution = function(){
-  // console.log('gameReslolutionInvoked');
+  dealButton.style.display = 'block';
+  hitButton.style.display = 'none';
+  stayButton.style.display = 'none';
+  splitButton.style.display = 'none';
   Player.toggleGameEventListenersOff();
-  // console.log('EListeners off');
   Player.computerPlaysHand();
-  // console.log('computerPlaysHandInvoked');
   Player.handSum(Player.currentUser());
-  // console.log('players hand is ' + Player.playerObjectArray[Player.currentUser()].handValue);
   if (Player.playerObjectArray[Player.currentUser()].handValue > 21 || Player.playerObjectArray[0].handValue > Player.playerObjectArray[Player.currentUser()].handvalue){
-    console.log('loss');
+    newElement('h1', 'You Lose!', buttonHolder);
     Player.playerObjectArray[Player.currentUser()].gameOutcome.push('loss');
     Player.playerObjectArray[Player.currentUser()].losses++;
     Player.playerObjectArray[Player.currentUser()].gamesPlayed++;
   }else if(Player.playerObjectArray[0].handValue > 21){
-    console.log('win');
+    newElement('h1', 'You Win!', buttonHolder);
     Player.playerObjectArray[Player.currentUser()].gameOutcome.push('win');
     Player.playerObjectArray[Player.currentUser()].wins++;
     Player.playerObjectArray[Player.currentUser()].gamesPlayed++;
   }else if(Player.playerObjectArray[Player.currentUser()].handValue <= 21 && Player.playerObjectArray[0].handValue < Player.playerObjectArray[Player.currentUser()].handValue){
-    console.log('win');
+    newElement('h1', 'You Win!', buttonHolder);
     Player.playerObjectArray[Player.currentUser()].gameOutcome.push('win');
     Player.playerObjectArray[Player.currentUser()].wins++;
     Player.playerObjectArray[Player.currentUser()].gamesPlayed++;
   }else {
-    console.log('tie');
+    newElement('h1', 'A Tie!', buttonHolder);
     Player.playerObjectArray[Player.currentUser()].gameOutcome.push('tie');
     Player.playerObjectArray[Player.currentUser()].ties++;
     Player.playerObjectArray[Player.currentUser()].gamesPlayed++;
@@ -261,31 +265,29 @@ Player.gameResolution = function(){
 
 Player.hitHandler = function(){
   console.log('hit');
+  splitButton.style.display = 'none';
   Player.playerObjectArray[Player.currentUser()].handCards.push(Card.randomCard());
   //takes the last card in the hand and writes it to the page
   Card.printCard(playerHand, Player.playerObjectArray[Player.currentUser()].handCards[Player.playerObjectArray[Player.currentUser()].handCards.length - 1][0].suit, Player.playerObjectArray[Player.currentUser()].handCards[Player.playerObjectArray[Player.currentUser()].handCards.length - 1][0].name);
-  // console.log('dealer hand is ' + Player.playerObjectArray[0].handValue);
   Player.handSum(Player.currentUser());
-  // console.log(Player.playerObjectArray[Player.currentUser()]);
   if (Player.playerObjectArray[Player.currentUser()].handValue >= 21){
-    // console.log('player hand busts');
     Player.gameResolution();
   }
-
 };
 
 Player.stayHandler = function(){
-  console.log('stay');
   Player.gameResolution();
 };
 
 Player.splitHandler = function(){
-  console.log('split');
   alert('Please upgrade your Flash player!');
 };
 
 //deals out cards and turns on hit/stay
 Player.dealHandler = function(){
+  dealButton.style.display = 'none';
+  hitButton.style.display = 'block';
+  stayButton.style.display = 'block';
   Card.cardCreator();
   playerHand.innerHTML = null;
   for (var i in staticPlayerNameArray){
