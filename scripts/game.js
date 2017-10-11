@@ -22,32 +22,27 @@ function Player(name){
   localStorage.playerObjectArray = JSON.stringify(Player.playerObjectArray);
 }
 
-Player.localStorageAlign = function(){
+(Player.localStorageAlign = function(){
 //checks to see if dealer and standinplayers were created and creates if needed
   if(!localStorage.playerObjectArray){
     Player.playerObjectArray = [];
     Player.staticPlayerNameArray = function(){
-      var staticPlayerNameArray = ['Dealer', 'Player1', 'Player5', 'Player2', 'Player3', 'Player4', 'Player5'];
+      var staticPlayerNameArray = ['Dealer', 'Player1', 'Player2', 'Player3', 'Player4', 'Player5', 'Player6'];
       for (var i in staticPlayerNameArray){
         new Player(staticPlayerNameArray[i]);
       }
     };
     Player.staticPlayerNameArray();
-  }else if(localStorage.playerObjectArray){
+  }else{
     Player.playerObjectArray = JSON.parse(localStorage.playerObjectArray);
   }
+
   // if username does not have an object, creates one with name of username
   if(localStorage.userName && !localStorage.playerObjectArray.includes(localStorage.userName)){
     // console.log('creating new user object');
     new Player(localStorage.userName);
   }
-  //pull down playerObjectArray formlocStor if it exists
-  if(localStorage.playerObjectArray){ //this function works
-    // console.log('worked');
-    Player.playerObjectArray = JSON.parse(localStorage.playerObjectArray);
-  }
-};
-Player.localStorageAlign();
+})();
 
 //function to store the i variable of the current user for reference in Player.playerObjectArray[i];
 Player.currentUser = function(){
@@ -74,15 +69,14 @@ Card.valueArray = [2,3,4,5,6,7,8,9,10,10,10,10,11];
 Card.nameArray = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A'];
 
 //builds all the cards
-Card.cardCreator = function(){
+(Card.cardCreator = function(){
   for(var i in Card.valueArray){
     new Card(Card.nameArray[i], 'hearts', Card.valueArray[i]);
     new Card(Card.nameArray[i], 'diamonds', Card.valueArray[i]);
     new Card(Card.nameArray[i], 'spades', Card.valueArray[i]);
     new Card(Card.nameArray[i], 'clubs', Card.valueArray[i]);
   }
-};
-Card.cardCreator();
+})();
 
 //print a card to the screen
 Card.printCard = function(hand, suit, name) {
@@ -104,6 +98,10 @@ Card.printCard = function(hand, suit, name) {
   topRightP.className += 'topright';
   bottomLeftP.className += 'bottomleft';
   bottomRightP.className += 'bottomright';
+  topLeftP.className += 'corner';
+  topRightP.className += 'corner';
+  bottomLeftP.className += 'corner';
+  bottomRightP.className += 'corner';
 
   topRightP.className += 'bigger';
   bottomLeftP.className += 'bigger';
