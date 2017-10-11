@@ -98,6 +98,10 @@ Card.printCard = function(hand, suit, name) {
   topRightP.className += 'topright';
   bottomLeftP.className += 'bottomleft';
   bottomRightP.className += 'bottomright';
+  topLeftP.className += 'corner';
+  topRightP.className += 'corner';
+  bottomLeftP.className += 'corner';
+  bottomRightP.className += 'corner';
 
   topRightP.className += 'bigger';
   bottomLeftP.className += 'bigger';
