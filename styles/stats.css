@@ -1,0 +1,38 @@
+
+
+section {
+  float: left;
+  width: 560px;
+  margin-top: 50px;
+}
+
+article {
+  float: right;
+  width: 400px;
+  margin-top: 75px;
+}
+
+h1 {
+  margin: 0;
+  text-align: center;
+}
+
+p {
+  padding: 50px;
+}
+
+li {
+  text-align: center;
+}
+
+ul {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  max-height: 400px;
+  overflow: scroll;
+}
+
+hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
