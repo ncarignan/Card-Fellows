@@ -72,7 +72,7 @@ function showTrend() {
 
 //Calculate running win percentage -- Don't factor in ties.
 function winPercentage(){
-  return (currentUser.wins / (currentUser.wins + currentUser.losses)) * 100;
+  return Math.round((currentUser.wins / (currentUser.wins + currentUser.losses)) * 100);
 }
 
 //Conditional to pick which message to display to user
@@ -112,7 +112,7 @@ if (currentUser.gamesPlayed <= 25){
     newElement('li', ('Game ' + (j + 1) + ' ..............................................................................................................' + currentUser.gameOutcome[j]), games);
   }
 } else {
-  for (var k = (currentUser.gamesPlayed - 25); k < currentUser.gamesPlayed.length; k++){
+  for (var k = (currentUser.gamesPlayed - 25); k < currentUser.gamesPlayed; k++){
     newElement('li', ('Game ' + (k + 1) + ' ..............................................................................................................' + currentUser.gameOutcome[k]), games);
   }
 }
