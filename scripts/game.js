@@ -6,7 +6,7 @@ var stayButton = document.getElementById('stayButton');
 var splitButton = document.getElementById('splitButton');
 var dealButton = document.getElementById('dealButton');
 var playerHand = document.getElementById('playerhand');
-var buttonHolder = document.getElementById('buttonHolder');
+var results = document.getElementById('results');
 var staticPlayerNameArray = ['Dealer', 'Player1', 'Player2', 'Player3', 'Player4', 'Player5', 'Player6'];
 Player.computer0Hand = document.getElementById('dealerhand');
 Player.computer1Hand = document.getElementById('computer1Hand');
@@ -245,22 +245,22 @@ Player.gameResolution = function(){
   Player.dealerCardWriter();
   Player.handSum(Player.currentUser());
   if (Player.playerObjectArray[Player.currentUser()].handValue > 21 || Player.playerObjectArray[0].handValue > Player.playerObjectArray[Player.currentUser()].handvalue){
-    newElement('h1', 'You Lose!', buttonHolder);
+    newElement('h1', 'You Lose!', results);
     Player.playerObjectArray[Player.currentUser()].gameOutcome.push('loss');
     Player.playerObjectArray[Player.currentUser()].losses++;
     Player.playerObjectArray[Player.currentUser()].gamesPlayed++;
   }else if(Player.playerObjectArray[0].handValue > 21){
-    newElement('h1', 'You Win!', buttonHolder);
+    newElement('h1', 'You Win!', results);
     Player.playerObjectArray[Player.currentUser()].gameOutcome.push('win');
     Player.playerObjectArray[Player.currentUser()].wins++;
     Player.playerObjectArray[Player.currentUser()].gamesPlayed++;
   }else if(Player.playerObjectArray[Player.currentUser()].handValue <= 21 && Player.playerObjectArray[0].handValue < Player.playerObjectArray[Player.currentUser()].handValue){
-    newElement('h1', 'You Win!', buttonHolder);
+    newElement('h1', 'You Win!', results);
     Player.playerObjectArray[Player.currentUser()].gameOutcome.push('win');
     Player.playerObjectArray[Player.currentUser()].wins++;
     Player.playerObjectArray[Player.currentUser()].gamesPlayed++;
   }else {
-    newElement('h1', 'A Tie!', buttonHolder);
+    newElement('h1', 'A Tie!', results);
     Player.playerObjectArray[Player.currentUser()].gameOutcome.push('tie');
     Player.playerObjectArray[Player.currentUser()].ties++;
     Player.playerObjectArray[Player.currentUser()].gamesPlayed++;
@@ -285,11 +285,12 @@ Player.stayHandler = function(){
 };
 
 Player.splitHandler = function(){
-  alert('Please upgrade your Flash player!');
+  alert('"Adobe Flash Player" is out-of-date.\n\nThe version of this plug-in on your computer does not incude the latest security updates and is blocked. To continue using "Adobe Flash Player", download an update from Adobe.');
 };
 
 //deals out cards and turns on hit/stay
 Player.dealHandler = function(){
+  results.innerHTML = null;
   dealButton.style.display = 'none';
   hitButton.style.display = 'block';
   stayButton.style.display = 'block';
