@@ -8,16 +8,24 @@
     <link rel="stylesheet" href="../styles/game.css">
   </head>
   <body>
+    <header>
+      <img src="../resources/logo_large.png" alt="" height="100px">
+      <ul>
+        <li id="scores" hidden><a href="../html/stats.html">Stats</a></li>
+        <li id="play" hidden><a href="../html/game.html">Play</a></li>
+        <li><a href="../index.html">Home</a></li>
+      </ul>
+    </header>
 
-    <nav>
-    </nav>
     <div>
       <article></article>
+      <figure class="dealerHelper"><div class="innerDealerHelper"></div></figure>
       <figure id="dealerhand"></figure>
+      <figure class="dealerHelper"><div class="innerDealerHelper"></div></figure>
       <article></article>
     </div>
     <button id= "dealButton" type="button">Deal</button>
-    <figure>
+    <figure id= "computerHands">
       <ul>
         <li id="player1"><img></li>
         <li id="player2"><img></li>
@@ -29,15 +37,21 @@
     </figure>
     <div>
       <article></article>
+      <figure class="dealerHelper"><div class="innerDealerHelper"></div></figure>
       <figure id = "playerhand"></figure>
-      <ul>
-        <li><button id ="hitButton" type="button">Hit</button></li>
-        <li><button id ="stayButton" type="button">Stay</button></li>
-        <li><button id ="splitButton" type="button" hidden>Split</button></li>
-      </ul>
+
+
+        <figure id="buttonHolder">
+          <button id ="hitButton" class ="gameButton" type="button" hidden>Hit</button>
+          <button id ="stayButton" class ="gameButton" type="button" hidden>Stay</button>
+          <button id ="splitButton" class ="gameButton" type="button" hidden>Split</button>
+        </figure>
+
+      <article></article>
     </div>
     <button type="button">Hide/Show Help</button>
     <button id="delete" type="submit">Reset Current User History</button>
+
     <script src="../scripts/game.js"></script>
     <script src="../scripts/delete.js"></script>
   </body>
