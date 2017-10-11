@@ -22,27 +22,28 @@
       <a href="#" id="rules">Rules</a>
     </nav>
 
-  <main>
-    <h1>Card Fellows</h1>
-    <!-- get started  -->
-    <div id="sign-in">
+    <main>
+      <h1>Card Fellows</h1>
+      <!-- get started  -->
+      <div id="sign-in">
 
-      <div id="welcome">
+        <div id="welcome">
+        </div>
+
+        <a href="html/game.html"><button id="get-started" type="button" name="button" hidden>Get Started</button></a>
+
+        <!-- Register/Login -->
+          <form id = "login" class="#" action="index.html" method="post" style="block">
+            <input type="text" name="username" value="">
+            <button type="submit">Register/Login</button>
+          </form>
+
+          <button id="change-user" type="button" name="button" hidden>Change User</button>
       </div>
 
-      <a href="html/game.html"><button id="get-started" type="button" name="button" hidden>Get Started</button></a>
-
-      <!-- Register/Login -->
-        <form id = "login" class="#" action="index.html" method="post" style="block">
-          <input type="text" name="username" value="">
-          <button type="submit">Register/Login</button>
-        </form>
-
-
-        <button id="change-user" type="button" name="button" hidden>Change User</button>
-    </div>
-
-        <p id = "paragraph" hidden>Learn to Play!  Here at Card Fellows, we understand that not everyone knows how to play Blackjack.  We've constructed a helpful environment where you can play while you learn.  In this site you'll find tips and tricks that will help you understand the game of Blackjack and have fun while doing so.<br/><br/>Sign in to get started!</p>
+      <p id = "paragraph" hidden>
+          Learn to Play!  Here at Card Fellows, we understand that not everyone knows how to play Blackjack.  We've constructed a helpful environment where you can play while you learn.  In this site you'll find tips and tricks that will help you understand the game of Blackjack and have fun while doing so.<br/><br/>Sign in to get started!
+      </p>
 
       <div id = "list" hidden>
           <h3>Basic Blackjack Rules:</h3>
@@ -56,9 +57,7 @@
             <li>Dealer will hit until his/her cards total 17 or higher.</li>
           </ul>
       </div>
-
-
-  </main>
-  <script type="text/javascript" src="scripts/app.js"></script>
+    </main>
+    <script type="text/javascript" src="scripts/app.js"></script>
   </body>
 </html>
