@@ -5,12 +5,20 @@ var hitButton = document.getElementById('hitButton');
 var stayButton = document.getElementById('stayButton');
 var splitButton = document.getElementById('splitButton');
 var dealButton = document.getElementById('dealButton');
-var dealerHand = document.getElementById('dealerhand');
+var computer0Hand = document.getElementById('dealerhand');
 var playerHand = document.getElementById('playerhand');
+Player.computer1Hand = document.getElementById('computer1Hand');
+Player.computer2Hand = document.getElementById('computer2Hand');
+Player.computer3Hand = document.getElementById('computer3Hand');
+Player.computer4Hand = document.getElementById('computer4Hand');
+Player.computer5Hand = document.getElementById('computer5Hand');
+Player.computer6Hand = document.getElementById('computer6Hand');
+
 
 //constructor for players
-function Player(name){
+function Player(name, handLoc){
   this.name = name;
+  this.handLoc = handLoc;
   this.handCards = [];
   this.gameOutcome = [];
   this.gamesPlayed = 0;
@@ -29,7 +37,7 @@ function Player(name){
     Player.staticPlayerNameArray = function(){
       var staticPlayerNameArray = ['Dealer', 'Player1', 'Player2', 'Player3', 'Player4', 'Player5', 'Player6'];
       for (var i in staticPlayerNameArray){
-        new Player(staticPlayerNameArray[i]);
+        new Player(staticPlayerNameArray[i], eval('Player.computer' + i + 'Hand'));
       }
     };
     Player.staticPlayerNameArray();
@@ -40,7 +48,7 @@ function Player(name){
   // if username does not have an object, creates one with name of username
   if(localStorage.userName && !localStorage.playerObjectArray.includes(localStorage.userName)){
     // console.log('creating new user object');
-    new Player(localStorage.userName);
+    new Player(localStorage.userName, playerHand);
   }
 })();
 
@@ -142,14 +150,6 @@ Card.printCard = function(hand, suit, name){
 //selects a random card's integer and checks to make sure it is unique
 Card.randomCard = function(){
   var cardInteger = Math.floor(Math.random() * (Card.all.length - 1));
-  // // console.log(cardInteger);
-  //   if(Card.cardsPickedThisHand.includes(cardInteger)){
-  //     i--;
-  //   }else{
-  //     Card.cardsPickedThisHand.push(cardInteger);
-  //   }
-  //   return cardInteger;
-  // }
   return Card.all.splice(cardInteger, 1);
 };
 
@@ -165,35 +165,21 @@ Card.dealerFunction = function(){
   Player.playerObjectArray[Player.currentUser()].handCards.push(Card.randomCard());
   Player.playerObjectArray[Player.currentUser()].handCards.push(Card.randomCard());
 
-  Card.printCard(dealerHand , Player.playerObjectArray[0].handCards[0][0].suit , Player.playerObjectArray[0].handCards[0][0].name);
-  Card.printCard(playerHand , Player.playerObjectArray[Player.currentUser()].handCards[0][0].suit, Player.playerObjectArray[Player.currentUser()].handCards[0][0].name);
-  Card.printCard(playerHand , Player.playerObjectArray[Player.currentUser()].handCards[1][0].suit, Player.playerObjectArray[Player.currentUser()].handCards[1][0].name);
+  Card.printCard(computer0Hand, Player.playerObjectArray[0].handCards[0][0].suit , Player.playerObjectArray[0].handCards[0][0].name);
+  Card.printCard(playerHand, Player.playerObjectArray[Player.currentUser()].handCards[0][0].suit, Player.playerObjectArray[Player.currentUser()].handCards[0][0].name);
+  Card.printCard(playerHand, Player.playerObjectArray[Player.currentUser()].handCards[1][0].suit, Player.playerObjectArray[Player.currentUser()].handCards[1][0].name);
 };
 //TODO: add event listener to a button for dealing
 
 //Iterates on dealer and all standin players to play their hand by vegas dealer rules
 Player.computerPlaysHand = function(){
-  // console.log('beginPPH');
   for(var i = 0; i < 7; i++){
-    // console.log('');
     Player.handSum(i);
-    // console.log('');
-    // for(var k = 0; k < 1; k++){
-    // console.log('player begins playing');
     while (Player.playerObjectArray[i].handValue < 17){
-      // console.log(Player.playerObjectArray[i].handValue);
-      // console.log('hand was <17');
       Player.playerObjectArray[i].handCards.push(Card.randomCard());
+      Card.printCard(eval('Player.computer' + i + 'Hand'), Player.playerObjectArray[i].handCards[Player.playerObjectArray[i].handCards.length - 1][0].suit, Player.playerObjectArray[i].handCards[Player.playerObjectArray[i].handCards.length - 1][0].name);
       Player.handSum(i);
-      // console.log(Player.playerObjectArray[i].handValue);
-      // console.log('hit');
-      // if (Player.playerObjectArray[i].handValue < 17){
-      // console.log(Player.playerObjectArray[i].handValue);
-      // console.log('still under 17, reevaluate');
-      // k--;
-      // }
     }
-    // }
   }
 };
 //function that reEvaluates the hand's value
@@ -301,7 +287,7 @@ Player.splitHandler = function(){
 Player.dealHandler = function(){
   Card.cardCreator();
   playerHand.innerHTML = null;
-  dealerHand.innerHTML = null;
+  computer0Hand.innerHTML = null;
   console.log('deal');
   Player.toggleGameEventListenersOn();
   Card.dealerFunction();
