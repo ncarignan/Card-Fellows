@@ -30,7 +30,19 @@ var section = document.getElementById('section');
 // Get userName + game info/Set globals
 var userName = localStorage.userName;
 var currentUser = null;
-var playerObjectArray = JSON.parse(localStorage.playerObjectArray);
+if (localStorage.playerObjectArray){
+  var playerObjectArray = JSON.parse(localStorage.playerObjectArray);
+} else {
+  playerObjectArray = {name: localStorage.userName,
+    handCards: [],
+    gameOutcome: [],
+    gamesPlayed: 0,
+    handValue: 0 ,
+    wins: 0,
+    losses: 0,
+    ties: 0};
+  currentUser = playerObjectArray;
+}
 var winsVsLosses = null;
 
 // Match userName with relevant player history
