@@ -69,15 +69,14 @@ Card.valueArray = [2,3,4,5,6,7,8,9,10,10,10,10,11];
 Card.nameArray = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A'];
 
 //builds all the cards
-Card.cardCreator = function(){
+(Card.cardCreator = function(){
   for(var i in Card.valueArray){
     new Card(Card.nameArray[i], 'hearts', Card.valueArray[i]);
     new Card(Card.nameArray[i], 'diamonds', Card.valueArray[i]);
     new Card(Card.nameArray[i], 'spades', Card.valueArray[i]);
     new Card(Card.nameArray[i], 'clubs', Card.valueArray[i]);
   }
-};
-Card.cardCreator();
+})();
 
 //print a card to the screen
 Card.printCard = function(hand, suit, name) {
