@@ -79,11 +79,11 @@ Card.nameArray = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A'];
   }
 })();
 
-function newElement(type, content, parent){
-  var newEl = document.createElement(type);
-  newEl.textContent = content;
-  parent.appendChild(newEl);
-};
+// function newElement(type, content, parent){
+//   var newEl = document.createElement(type);
+//   newEl.textContent = content;
+//   parent.appendChild(newEl);
+// };
 
 //print a card to the screen
 Card.printCard = function(hand, suit, name){
