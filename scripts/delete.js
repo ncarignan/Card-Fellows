@@ -12,9 +12,9 @@ for (var i = 0; i < playerObjectArray.length; i++){
   }
 };
 
-//Point to this; <input id="delete" type="button">
+//Point to this; <button id="delete" type="button">
 var delEl = document.getElementById('delete');
-delEl.addeventListener('click', clearHistHandler);
+delEl.addEventListener('click', clearHistHandler);
 
 //Clear History!
 function clearHistHandler(){

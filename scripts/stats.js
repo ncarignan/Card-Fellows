@@ -106,16 +106,16 @@ function newElement(type, content, parent){
 //Generate game history info
 newElement('h1', ('Hello, ' + userName + '!'), player);
 
-//Display no more than the 25 past games
-if (currentUser.gamesPlayed <= 25){
-  for (var j = 0; j < currentUser.gamesPlayed; j++){
-    newElement('li', ('Game ' + (j + 1) + ' ..............................................................................................................' + currentUser.gameOutcome[j]), games);
-  }
-} else {
-  for (var k = (currentUser.gamesPlayed - 25); k < currentUser.gamesPlayed; k++){
-    newElement('li', ('Game ' + (k + 1) + ' ..............................................................................................................' + currentUser.gameOutcome[k]), games);
-  }
-}
+//Display game history
+// if (currentUser.gamesPlayed <= 25){
+for (var j = 0; j < currentUser.gamesPlayed; j++){
+  newElement('li', ('Game ' + (j + 1) + ' ..............................................................................................................' + currentUser.gameOutcome[j]), games);
+};
+// } else {
+//   for (var k = (currentUser.gamesPlayed - 25); k < currentUser.gamesPlayed; k++){
+//     newElement('li', ('Game ' + (k + 1) + ' ..............................................................................................................' + currentUser.gameOutcome[k]), games);
+//   }
+// }
 
 
 newElement('h1', ('Win Percentage: ' + winsVsLosses + '%'), percentEl);
