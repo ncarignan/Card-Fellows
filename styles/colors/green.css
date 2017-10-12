@@ -3,10 +3,35 @@
   color: rgb(0, 62, 21);
 }
 
+nav a:hover {
+  color: rgb(53, 186, 137);
+}
+
+a {
+  color: rgb(0, 62, 21);
+}
+
 html {
   background: rgb(76, 117, 19); /* For browsers that do not support gradients */
   background: -webkit-radial-gradient(rgb(116, 125, 21), rgb(76, 117, 19)); /* Safari 5.1 to 6.0 */
   background: -o-radial-gradient(rgb(116, 125, 21), rgb(76, 117, 19)); /* For Opera 11.6 to 12.0 */
   background: -moz-radial-gradient(rgb(116, 125, 21), rgb(76, 117, 19)); /* For Firefox 3.6 to 15 */
   background: radial-gradient(rgb(116, 125, 21), rgb(76, 117, 19)); /* Standard syntax */
+}
+
+/*Card Stuff*/
+
+.outerbox, .outerboxr, .dealerHelper, .innerDealerHelper,  .innerbox, .innerboxr {
+  color: rgba(0,0,0,0.4);
+  background-color: rgb(187, 205, 103);
+  background: -webkit-linear-gradient(left top, rgb(185, 227, 151), rgb(187, 205, 103)); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, rgb(185, 227, 151), rgb(187, 205, 103)); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, rgb(185, 227, 151), rgb(187, 205, 103)); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right, rgb(185, 227, 151), rgb(187, 205, 103)); /* Standard syntax */
+  border-color: rgba(0,0,0,0.4);
+}
+
+.innerboxr {
+  color: rgba(255,0,0,0.7);
+  border-color: rgba(255,0,0,0.7);
 }
