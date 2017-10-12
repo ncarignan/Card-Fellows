@@ -80,7 +80,7 @@ a {
   margin-left: -25px;
   margin-top:0;
   position: relative;
-  top:-20px; 
+  top:-20px;
   height: 203px;
   width: 145px;
   background-color: black;
@@ -138,22 +138,22 @@ a {
 
 .topright {
   float: right;
-  margin-top: 0
+  margin-top: 5%
 }
 
 .bottomleft {
   float: left;
   clear: both;
-  margin-top: 68%;
+  margin-top: 85%;
   transform: rotate(180deg);
 }
 
 .bottomright {
   float: right;
-  margin-top: 72%;
+  margin-top: 83%;
   transform: rotate(180deg);
 }
 
 .bigger {
-  font-size: 1.3em;
+  font-size: .9em;
 }

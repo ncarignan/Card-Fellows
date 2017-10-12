@@ -8,6 +8,8 @@ var dealButton = document.getElementById('dealButton');
 var playerHand = document.getElementById('playerhand');
 var results = document.getElementById('results');
 var staticPlayerNameArray = ['Dealer', 'Player1', 'Player2', 'Player3', 'Player4', 'Player5', 'Player6'];
+var topRightHelper = document.getElementById('toprighthelper');
+var bottomLeftHelper = document.getElementById('bottomlefthelper');
 Player.computer0Hand = document.getElementById('dealerhand');
 Player.computer1Hand = document.getElementById('computer1Hand');
 Player.computer2Hand = document.getElementById('computer2Hand');
@@ -92,10 +94,10 @@ Card.nameArray = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A'];
 Card.printCard = function(hand, suit, name){
   var outerDiv = document.createElement('div');
   var innerDiv = document.createElement('div');
-  var topLeftP = document.createElement('p');
-  var topRightP = document.createElement('p');
-  var bottomLeftP = document.createElement('p');
-  var bottomRightP = document.createElement('p');
+  var topLeftP = document.createElement('h2');
+  var topRightP = document.createElement('h2');
+  var bottomLeftP = document.createElement('h2');
+  var bottomRightP = document.createElement('h2');
 
   hand.appendChild(outerDiv);
   outerDiv.appendChild(innerDiv);
@@ -198,32 +200,36 @@ Player.handSum = function(i){
 
 Player.userGuideRules = function(){
   Player.handSum(Player.currentUser());
-  if([2,3].includes(Player.playerObjectArray[0].handCards[0][0].value)){
+  if([2,3].includes(Player.playerObjectArray[0].handCards[1][0].value)){
+    newElement('p', 'When the dealer has a 2 or a 3 showing, their odds of busting are about 36%. The player advantage percentage in this case is about 11%.', topRightHelper);
     if(Player.playerObjectArray[Player.currentUser()].handValue < 13){
-      // console.log('hit lower than 13');
+      newElement('p', 'The probability of busting on a 12 is 31%. Anything lower than that is impossible to bust on. You should hit!', bottomLeftHelper);
     }else{
-      // console.log('stay');
+      newElement('p', 'The probability of busting on a hit greater than 39%. You should stay!', bottomLeftHelper);// console.log('stay');
     }
   }
-  if([4,5,6].includes(Player.playerObjectArray[0].handCards[0][0].value)){
+  if([4,5,6].includes(Player.playerObjectArray[0].handCards[1][0].value)){
+    newElement('p', 'When the dealer has a 4, 5 or 6 showing, their odds of busting are about 41%. The player advantage percentage in this case is about 22%.', topRightHelper);
     if(Player.playerObjectArray[Player.currentUser()].handValue < 12){
-      // console.log('hit lower than 12');
+      newElement('p', 'The probability of busting on a hit is 0%. You should hit!', bottomLeftHelper);
     }else{
-      // console.log('stay');
+      newElement('p', 'The probability of busting on a hit is greater than 31%. You should stay!', bottomLeftHelper);
     }
   }
-  if([7,8,9].includes(Player.playerObjectArray[0].handCards[0][0].value)){
+  if([7,8,9].includes(Player.playerObjectArray[0].handCards[1][0].value)){
+    newElement('p', 'When the dealer has a 7, 8 or 9 showing, their odds of busting are about 24%. The player advantage percentage in this case declines rapidly from 14% to -4%.', topRightHelper);
     if(Player.playerObjectArray[Player.currentUser()].handValue < 17){
-      // console.log('hit lower than 17');
+      newElement('p', 'The probability of busting on a hit is less than 62%. However, there\'s a good chance the dealer will beat you if you don\'t. You should hit!', bottomLeftHelper);
     }else{
-      // console.log('stay');
+      newElement('p', 'The probability of busting on a hit is greater than 69%. You should stay!', bottomLeftHelper);
     }
   }
-  if([10,11].includes(Player.playerObjectArray[0].handCards[0][0].value)){
+  if([10,11].includes(Player.playerObjectArray[0].handCards[1][0].value)){
+    newElement('p', 'When the dealer has a card of value 10 or 11 showing, their odds of busting are about 21%, unless they have an ace. In this case their odds are busting are about 12%. The player advantage percentage in this case is about -17%.', topRightHelper);
     if(Player.playerObjectArray[Player.currentUser()].handValue < 17 ){
-      // console.log('hit lower than 17, split if able');
+      newElement('p', 'The probability of busting on a hit is less than 62%. However, there\'s a good chance the dealer will beat you if you don\'t. You should hit!', bottomLeftHelper);
     }else{
-      // console.log('stay');
+      newElement('p', 'The probability of busting on a hit is greater than 69%. You should stay!', bottomLeftHelper);
     }
   }
 };
@@ -276,8 +282,9 @@ Player.hitHandler = function(){
   Card.printCard(playerHand, Player.playerObjectArray[Player.currentUser()].handCards[Player.playerObjectArray[Player.currentUser()].handCards.length - 1][0].suit, Player.playerObjectArray[Player.currentUser()].handCards[Player.playerObjectArray[Player.currentUser()].handCards.length - 1][0].name);
   Player.handSum(Player.currentUser());
   if (Player.playerObjectArray[Player.currentUser()].handValue >= 21){
-    Player.gameResolution();
+    return Player.gameResolution();
   }
+  Player.userGuideRules();
 };
 
 Player.stayHandler = function(){
@@ -303,6 +310,7 @@ Player.dealHandler = function(){
   console.log('deal');
   Player.toggleGameEventListenersOn();
   Card.dealerFunction();
+  Player.userGuideRules();
 };
 
 Player.dealerCardWriter = function(){
