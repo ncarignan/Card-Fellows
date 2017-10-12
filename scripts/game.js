@@ -199,6 +199,8 @@ Player.handSum = function(i){
 };
 
 Player.userGuideRules = function(){
+  topRightHelper.innerHTML = null;
+  bottomLeftHelper.innerHTML = null;
   Player.handSum(Player.currentUser());
   if([2,3].includes(Player.playerObjectArray[0].handCards[1][0].value)){
     newElement('p', 'When the dealer has a 2 or a 3 showing, their odds of busting are about 36%. The player advantage percentage in this case is about 11%.', topRightHelper);
