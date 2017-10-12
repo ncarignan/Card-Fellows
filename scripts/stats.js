@@ -25,7 +25,7 @@ var losing = document.getElementById('losing');
 var winning = document.getElementById('winning');
 var trend = document.getElementById('trend');
 var section = document.getElementById('section');
-
+var compStats = document.getElementById('compstats');
 
 // Get userName + game info/Set globals
 var userName = localStorage.userName;
@@ -87,6 +87,11 @@ function winPercentage(){
   return Math.round((currentUser.wins / (currentUser.wins + currentUser.losses)) * 100);
 }
 
+//Function for calculating computer's win percentage
+function computerWinPercentage(i){
+  return Math.round((playerObjectArray[i].wins / (playerObjectArray[i].wins + playerObjectArray[i].losses)) * 100);
+}
+
 //Conditional to pick which message to display to user
 if (currentUser.gamesPlayed < 1 || !localStorage.playerObjectArray){
   section.style.display = 'none';
@@ -106,8 +111,6 @@ if (currentUser.gamesPlayed > 0){
   }
 }
 
-
-
 //Helper function
 function newElement(type, content, parent){
   var newEl = document.createElement(type);
@@ -119,15 +122,14 @@ function newElement(type, content, parent){
 newElement('h1', ('Hello, ' + userName + '!'), player);
 
 //Display game history
-// if (currentUser.gamesPlayed <= 25){
 for (var j = 0; j < currentUser.gamesPlayed; j++){
   newElement('li', ('Game ' + (j + 1) + ' ..............................................................................................................' + currentUser.gameOutcome[j]), games);
 };
-// } else {
-//   for (var k = (currentUser.gamesPlayed - 25); k < currentUser.gamesPlayed; k++){
-//     newElement('li', ('Game ' + (k + 1) + ' ..............................................................................................................' + currentUser.gameOutcome[k]), games);
-//   }
-// }
-
 
 newElement('h1', ('Win Percentage: ' + winsVsLosses + '%'), percentEl);
+
+var computerPlayerArr = ['Dealer Sam', 'Ron', 'Amanda', 'Allie', 'Gary', 'Dustin', 'Demi'];
+
+for (var k = 1; k < 7; k++){
+  newElement('li', (computerPlayerArr[k] + ' ..............................................................................................................' + computerWinPercentage(k)), compStats);
+}

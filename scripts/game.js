@@ -174,21 +174,22 @@ Card.dealerFunction = function(){
   }
 };
 
+Player.randomHit = function(){
+  return Math.floor(Math.random() * (10)) + 11;
+};
+
 //Iterates on dealer and all standin players to play their hand by vegas dealer rules
 Player.computerPlaysHand = function(){
   for(var i = 0; i < 7; i++){
     Player.handSum(i);
-    while (Player.playerObjectArray[i].handValue < 17){
+    while (Player.playerObjectArray[i].handValue < Player.hitNumArr[i]){
       Player.playerObjectArray[i].handCards.push(Card.randomCard());
-      if (i === 0){
-        Card.printCard(eval('Player.computer' + i + 'Hand'), Player.playerObjectArray[i].handCards[Player.playerObjectArray[i].handCards.length - 1].suit, Player.playerObjectArray[i].handCards[Player.playerObjectArray[i].handCards.length - 1].name);
-      }
+      Card.printCard(eval('Player.computer' + i + 'Hand'), Player.playerObjectArray[i].handCards[Player.playerObjectArray[i].handCards.length - 1].suit, Player.playerObjectArray[i].handCards[Player.playerObjectArray[i].handCards.length - 1].name);
       Player.handSum(i);
     }
   }
 };
 
-//function that reEvaluates the hand's value
 Player.handSum = function(i){
   Player.playerObjectArray[i].handValue = 0;
   // console.log('reset is Success');
@@ -206,6 +207,26 @@ Player.handSum = function(i){
     }
   }
 };
+
+Player.ourRules = function(){
+  Player.handSum(6);
+  if([2,3].includes(Player.playerObjectArray[0].handCards[1].value)){
+    return 13;
+  }
+  if([4,5,6].includes(Player.playerObjectArray[0].handCards[1].value)){
+    return 12;
+  }
+  if([7,8,9].includes(Player.playerObjectArray[0].handCards[1].value)){
+    return 17;
+  }
+  if([10,11].includes(Player.playerObjectArray[0].handCards[1].value)){
+    return 17;
+  }
+};
+
+Player.hitNumArr = [17, 21, 0, 15, 18, Player.randomHit(), Player.ourRules()];
+
+//function that reEvaluates the hand's value
 
 Player.userGuideRules = function(){
   topRightHelper.innerHTML = null;
@@ -261,22 +282,27 @@ Player.gameResolution = function(){
   Player.computerPlaysHand();
   Player.dealerCardWriter();
   Player.handSum(Player.currentUser());
-  if ((Player.playerObjectArray[Player.currentUser()].handValue > 21) || (Player.playerObjectArray[0].handValue > Player.playerObjectArray[Player.currentUser()].handValue)){
+  if (Player.playerObjectArray[Player.currentUser()].handValue > 21){
     newElement('h1', 'You Lose!', results);
     Player.playerObjectArray[Player.currentUser()].gameOutcome.push('loss');
     Player.playerObjectArray[Player.currentUser()].losses++;
     Player.playerObjectArray[Player.currentUser()].gamesPlayed++;
-  }else if(Player.playerObjectArray[0].handValue > 21){
+  } else if ((Player.playerObjectArray[0].handValue > Player.playerObjectArray[Player.currentUser()].handValue) && (!(Player.playerObjectArray[0].handValue > 21))){
+    newElement('h1', 'You Lose!', results);
+    Player.playerObjectArray[Player.currentUser()].gameOutcome.push('loss');
+    Player.playerObjectArray[Player.currentUser()].losses++;
+    Player.playerObjectArray[Player.currentUser()].gamesPlayed++;
+  } else if (Player.playerObjectArray[0].handValue > 21){
     newElement('h1', 'You Win!', results);
     Player.playerObjectArray[Player.currentUser()].gameOutcome.push('win');
     Player.playerObjectArray[Player.currentUser()].wins++;
     Player.playerObjectArray[Player.currentUser()].gamesPlayed++;
-  }else if((Player.playerObjectArray[Player.currentUser()].handValue <= 21) && (Player.playerObjectArray[0].handValue < Player.playerObjectArray[Player.currentUser()].handValue)){
+  } else if ((Player.playerObjectArray[Player.currentUser()].handValue <= 21) && (Player.playerObjectArray[0].handValue < Player.playerObjectArray[Player.currentUser()].handValue)){
     newElement('h1', 'You Win!', results);
     Player.playerObjectArray[Player.currentUser()].gameOutcome.push('win');
     Player.playerObjectArray[Player.currentUser()].wins++;
     Player.playerObjectArray[Player.currentUser()].gamesPlayed++;
-  }else if(Player.playerObjectArray[0].handValue === Player.playerObjectArray[Player.currentUser()].handValue){
+  } else if (Player.playerObjectArray[0].handValue === Player.playerObjectArray[Player.currentUser()].handValue){
     newElement('h1', 'A Tie!', results);
     Player.playerObjectArray[Player.currentUser()].gameOutcome.push('tie');
     Player.playerObjectArray[Player.currentUser()].ties++;
@@ -284,8 +310,32 @@ Player.gameResolution = function(){
   } else {
     console.log('Congrats, you found the condition under which our game doesn\'t work!');
   }
+  Player.computerStoragePush();
   localStorage.playerObjectArray = JSON.stringify(Player.playerObjectArray);
 };
+
+Player.computerStoragePush = function(){
+  for (var i = 1; i < 7; i++){
+    Player.handSum(i);
+    if (Player.playerObjectArray[i].handValue > 21){
+      Player.playerObjectArray[i].losses++;
+      Player.playerObjectArray[i].gamesPlayed++;
+    } else if ((Player.playerObjectArray[0].handValue > Player.playerObjectArray[i].handValue) && (!(Player.playerObjectArray[0].handValue > 21))){
+      Player.playerObjectArray[i].losses++;
+      Player.playerObjectArray[i].gamesPlayed++;
+    } else if (Player.playerObjectArray[0].handValue > 21){
+      Player.playerObjectArray[i].wins++;
+      Player.playerObjectArray[i].gamesPlayed++;
+    } else if ((Player.playerObjectArray[i].handValue <= 21) && (Player.playerObjectArray[0].handValue < Player.playerObjectArray[i].handValue)){
+      Player.playerObjectArray[i].wins++;
+      Player.playerObjectArray[i].gamesPlayed++;
+    } else if (Player.playerObjectArray[0].handValue === Player.playerObjectArray[i].handValue){
+      Player.playerObjectArray[i].ties++;
+      Player.playerObjectArray[i].gamesPlayed++;
+    } else {
+      console.log('Congrats, you found the condition under which our game doesn\'t work!');
+  }
+}
 
 Player.hitHandler = function(){
   console.log('hit');
@@ -327,9 +377,11 @@ Player.dealHandler = function(){
 };
 
 Player.dealerCardWriter = function(){
-  Player.computer0Hand.innerHTML = null;
-  for (var i = 0; i < Player.playerObjectArray[0].handCards.length; i++)
-    Card.printCard(Player.computer0Hand, Player.playerObjectArray[0].handCards[i].suit, Player.playerObjectArray[0].handCards[i].name);
+  for (var j = 0; j < 7; j++){
+    (eval('Player.computer' + j + 'Hand')).innerHTML = null;
+    for (var i = 0; i < Player.playerObjectArray[j].handCards.length; i++)
+      Card.printCard(eval('Player.computer' + j + 'Hand'), Player.playerObjectArray[j].handCards[i].suit, Player.playerObjectArray[j].handCards[i].name);
+  }
 };
 
 dealButton.addEventListener('click', Player.dealHandler);
