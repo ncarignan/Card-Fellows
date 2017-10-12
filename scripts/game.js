@@ -162,9 +162,9 @@ Card.dealerFunction = function(){
   Player.playerObjectArray[Player.currentUser()].handCards.push(Card.randomCard());
   Player.playerObjectArray[Player.currentUser()].handCards.push(Card.randomCard());
 
-  for (var j = 0; j < 7; j++){
-    Card.printCard(eval('Player.computer' + j + 'Hand'), Player.playerObjectArray[j].handCards[1].suit , Player.playerObjectArray[j].handCards[1].name);
-  }
+
+  Card.printCard(Player.computer0Hand, Player.playerObjectArray[0].handCards[1].suit , Player.playerObjectArray[0].handCards[1].name);
+
 
   Card.printCard(playerHand, Player.playerObjectArray[Player.currentUser()].handCards[0].suit, Player.playerObjectArray[Player.currentUser()].handCards[0].name);
   Card.printCard(playerHand, Player.playerObjectArray[Player.currentUser()].handCards[1].suit, Player.playerObjectArray[Player.currentUser()].handCards[1].name);
@@ -184,7 +184,9 @@ Player.computerPlaysHand = function(){
     Player.handSum(i);
     while (Player.playerObjectArray[i].handValue < Player.hitNumArr[i]){
       Player.playerObjectArray[i].handCards.push(Card.randomCard());
-      Card.printCard(eval('Player.computer' + i + 'Hand'), Player.playerObjectArray[i].handCards[Player.playerObjectArray[i].handCards.length - 1].suit, Player.playerObjectArray[i].handCards[Player.playerObjectArray[i].handCards.length - 1].name);
+      if (i === 0){
+        Card.printCard((Player.computer0Hand), Player.playerObjectArray[i].handCards[Player.playerObjectArray[i].handCards.length - 1].suit, Player.playerObjectArray[i].handCards[Player.playerObjectArray[i].handCards.length - 1].name);
+      }
       Player.handSum(i);
     }
   }
@@ -334,8 +336,9 @@ Player.computerStoragePush = function(){
       Player.playerObjectArray[i].gamesPlayed++;
     } else {
       console.log('Congrats, you found the condition under which our game doesn\'t work!');
+    }
   }
-}
+};
 
 Player.hitHandler = function(){
   console.log('hit');
@@ -367,9 +370,7 @@ Player.dealHandler = function(){
   splitButton.style.display = 'none';
   Card.cardCreator();
   playerHand.innerHTML = null;
-  for (var i in staticPlayerNameArray){
-    eval('Player.computer' + i + 'Hand').innerHTML = null;
-  }
+  Player.computer0Hand.innerHTML = null;
   console.log('deal');
   Player.toggleGameEventListenersOn();
   Card.dealerFunction();
@@ -377,11 +378,9 @@ Player.dealHandler = function(){
 };
 
 Player.dealerCardWriter = function(){
-  for (var j = 0; j < 7; j++){
-    (eval('Player.computer' + j + 'Hand')).innerHTML = null;
-    for (var i = 0; i < Player.playerObjectArray[j].handCards.length; i++)
-      Card.printCard(eval('Player.computer' + j + 'Hand'), Player.playerObjectArray[j].handCards[i].suit, Player.playerObjectArray[j].handCards[i].name);
-  }
+  Player.computer0Hand.innerHTML = null;
+  for (var i = 0; i < Player.playerObjectArray[0].handCards.length; i++)
+    Card.printCard(Player.computer0Hand, Player.playerObjectArray[0].handCards[i].suit, Player.playerObjectArray[0].handCards[i].name);
 };
 
 dealButton.addEventListener('click', Player.dealHandler);

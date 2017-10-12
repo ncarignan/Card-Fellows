@@ -90,22 +90,22 @@ h1{
   width: 590px;
   /*border: solid black 1px;*/
   height: 252px;
-  padding-left:30px;
-  padding-top:43px;
+  padding-left: 85px;
+  padding-top: 43px;
 }
-#computerHands{
-  display:block;
-  height:250px;
-  border: solid black 2px;
-}
+
 #playerhand {
   width: 590px;
   /*border: solid black 1px;*/
   height: 252px;
-  padding-left: 30px;
+  padding-left: 85px;
   padding-top:43px
 }
 
 h2 {
   font-size: 30px;
+}
+
+h3 {
+  text-align: center;
 }
