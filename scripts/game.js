@@ -174,11 +174,15 @@ Card.dealerFunction = function(){
   }
 };
 
+Player.randomHit = function(){
+  return Math.floor(Math.random() * (10)) + 11;
+};
+
 //Iterates on dealer and all standin players to play their hand by vegas dealer rules
 Player.computerPlaysHand = function(){
   for(var i = 0; i < 7; i++){
     Player.handSum(i);
-    while (Player.playerObjectArray[i].handValue < 17){
+    while (Player.playerObjectArray[i].handValue < Player.hitNumArr[i]){
       Player.playerObjectArray[i].handCards.push(Card.randomCard());
       if (i === 0){
         Card.printCard(eval('Player.computer' + i + 'Hand'), Player.playerObjectArray[i].handCards[Player.playerObjectArray[i].handCards.length - 1].suit, Player.playerObjectArray[i].handCards[Player.playerObjectArray[i].handCards.length - 1].name);
@@ -188,7 +192,6 @@ Player.computerPlaysHand = function(){
   }
 };
 
-//function that reEvaluates the hand's value
 Player.handSum = function(i){
   Player.playerObjectArray[i].handValue = 0;
   // console.log('reset is Success');
@@ -206,6 +209,26 @@ Player.handSum = function(i){
     }
   }
 };
+
+Player.ourRules = function(){
+  Player.handSum(6);
+  if([2,3].includes(Player.playerObjectArray[0].handCards[1].value)){
+    return 13;
+  }
+  if([4,5,6].includes(Player.playerObjectArray[0].handCards[1].value)){
+    return 12;
+  }
+  if([7,8,9].includes(Player.playerObjectArray[0].handCards[1].value)){
+    return 17;
+  }
+  if([10,11].includes(Player.playerObjectArray[0].handCards[1].value)){
+    return 17;
+  }
+};
+
+Player.hitNumArr = [17, 21, 0, 15, 18, Player.randomHit(), Player.ourRules()];
+
+//function that reEvaluates the hand's value
 
 Player.userGuideRules = function(){
   topRightHelper.innerHTML = null;
