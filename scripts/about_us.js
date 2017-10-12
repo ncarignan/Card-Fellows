@@ -27,6 +27,11 @@ terminal.addEventListener('submit',function(event){
   default:
     window.location.href = '../index.html';
     break;
+  case 'theme light':
+    themes[localStorage.userName] = 'light.css';
+    localStorage.themes = JSON.stringify(themes);
+    window.location.href = 'about_us.html';
+    break;
   case 'theme peach':
     themes[localStorage.userName] = 'peach.css';
     localStorage.themes = JSON.stringify(themes);
