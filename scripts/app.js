@@ -10,6 +10,7 @@ var welcome = document.getElementById('welcome');
 var changeUser = document.getElementById('change-user');
 var play = document.getElementById('play');
 var scores = document.getElementById('scores');
+var live = document.getElementById('live');
 var signIn = document.getElementById('sign-in');
 var entry = document.getElementById('entry');
 
@@ -18,6 +19,7 @@ if (localStorage.userName) {
   doStuff();
 } else {
   play.style.display = 'none';
+  live.style.display = 'none';
   scores.style.display = 'none';
   userName = null;
 }
@@ -54,7 +56,7 @@ function handleChange() {
   welcome.innerHTML = null;
 }
 
-function handleLogin(e) { ////when button is clicked, add username to local storage AND show Get Started button
+function handleLogin(e) {
   e.preventDefault();
   userName = e.target.username.value;
   localStorage.userName = userName;
@@ -68,6 +70,7 @@ function doStuff() {
   changeUser.style.display = 'block';
   welcome.style.display = 'block';
   play.style.display = 'block';
+  live.style.display = 'block';
   scores.style.display = 'block';
 }
 
