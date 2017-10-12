@@ -152,7 +152,7 @@ Card.randomCard = function(){
 
 //populates gives dealer and standin players cards and Player cards
 Card.dealerFunction = function(){
-  Card.cardsPickedThisHand = [];
+  // Card.cardsPickedThisHand = [];
   for (var i = 0; i < 7; i++){
     Player.playerObjectArray[i].handCards = [];
     Player.playerObjectArray[i].handCards.push(Card.randomCard());
@@ -252,7 +252,7 @@ Player.gameResolution = function(){
   Player.computerPlaysHand();
   Player.dealerCardWriter();
   Player.handSum(Player.currentUser());
-  if (Player.playerObjectArray[Player.currentUser()].handValue > 21 || Player.playerObjectArray[0].handValue > Player.playerObjectArray[Player.currentUser()].handvalue){
+  if ((Player.playerObjectArray[Player.currentUser()].handValue > 21) || (Player.playerObjectArray[0].handValue > Player.playerObjectArray[Player.currentUser()].handValue)){
     newElement('h1', 'You Lose!', results);
     Player.playerObjectArray[Player.currentUser()].gameOutcome.push('loss');
     Player.playerObjectArray[Player.currentUser()].losses++;
@@ -262,16 +262,18 @@ Player.gameResolution = function(){
     Player.playerObjectArray[Player.currentUser()].gameOutcome.push('win');
     Player.playerObjectArray[Player.currentUser()].wins++;
     Player.playerObjectArray[Player.currentUser()].gamesPlayed++;
-  }else if(Player.playerObjectArray[Player.currentUser()].handValue <= 21 && Player.playerObjectArray[0].handValue < Player.playerObjectArray[Player.currentUser()].handValue){
+  }else if((Player.playerObjectArray[Player.currentUser()].handValue <= 21) && (Player.playerObjectArray[0].handValue < Player.playerObjectArray[Player.currentUser()].handValue)){
     newElement('h1', 'You Win!', results);
     Player.playerObjectArray[Player.currentUser()].gameOutcome.push('win');
     Player.playerObjectArray[Player.currentUser()].wins++;
     Player.playerObjectArray[Player.currentUser()].gamesPlayed++;
-  }else {
+  }else if(Player.playerObjectArray[0].handValue === Player.playerObjectArray[Player.currentUser()].handValue){
     newElement('h1', 'A Tie!', results);
     Player.playerObjectArray[Player.currentUser()].gameOutcome.push('tie');
     Player.playerObjectArray[Player.currentUser()].ties++;
     Player.playerObjectArray[Player.currentUser()].gamesPlayed++;
+  } else {
+    console.log('You forgot something. Player\'s hand value: ' + Player.playerObjectArray[Player.currentUser()].handValue + ' Dealer\'s hand value: ' + Player.playerObjectArray[0].handValue);
   }
   localStorage.playerObjectArray = JSON.stringify(Player.playerObjectArray);
 };
