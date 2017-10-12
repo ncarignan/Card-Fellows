@@ -17,3 +17,20 @@ html {
   background: -moz-radial-gradient(rgb(255, 234, 203), rgb(255, 220, 203), rgb(241, 192, 204)); /* For Firefox 3.6 to 15 */
   background: radial-gradient(rgb(255, 234, 203), rgb(255, 220, 203), rgb(241, 192, 204)); /* Standard syntax */
 }
+
+/*Card Stuff*/
+
+.outerbox, .outerboxr, .dealerHelper, .innerDealerHelper,  .innerbox, .innerboxr {
+  color: rgba(0,0,0,0.4);
+  background-color: rgb(255, 220, 203);
+  background: -webkit-linear-gradient(left top, rgb(255, 220, 203), rgb(241, 192, 204)); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, rgb(255, 220, 203), rgb(241, 192, 204)); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, rgb(255, 220, 203), rgb(241, 192, 204)); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right, rgb(255, 220, 203), rgb(241, 192, 204)); /* Standard syntax */
+  border-color: rgba(0,0,0,0.4);
+}
+
+.innerboxr, .outerboxr {
+  color: rgba(255, 130, 180, 0.7);
+  border-color: rgba(255, 130, 180, 0.7);
+}
