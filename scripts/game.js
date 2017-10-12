@@ -10,6 +10,7 @@ var results = document.getElementById('results');
 var staticPlayerNameArray = ['Dealer', 'Player1', 'Player2', 'Player3', 'Player4', 'Player5', 'Player6'];
 var topRightHelper = document.getElementById('toprighthelper');
 var bottomLeftHelper = document.getElementById('bottomlefthelper');
+var topLeftHelper = document.getElementById('toplefthelper');
 Player.computer0Hand = document.getElementById('dealerhand');
 Player.computer1Hand = document.getElementById('computer1Hand');
 Player.computer2Hand = document.getElementById('computer2Hand');
@@ -364,6 +365,8 @@ Player.splitHandler = function(){
 //deals out cards and turns on hit/stay
 Player.dealHandler = function(){
   results.innerHTML = null;
+  topLeftHelper.innerHTML = null;
+  topLeftHelper.innerHTML = '<img src="../resources/logo_large.png" width="100px">';
   dealButton.style.display = 'none';
   hitButton.style.display = 'block';
   stayButton.style.display = 'block';
