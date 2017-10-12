@@ -13,6 +13,13 @@ figure {
   box-sizing: border-box;
 }
 
+figure p {
+  text-color: inherit;
+  font-size: .6em;
+  padding: 10px;
+  overflow: scroll;
+}
+
 figure ul li {
   display:inline-block;
   padding-left: 30px;
@@ -54,6 +61,7 @@ h1{
   background: linear-gradient(to bottom right, rgb(250,250,250), rgb(210,210,210)); /* Standard syntax */
   border: 5px solid rgba(255,0,0,0.7);
   border-radius: 0.5em;
+  overflow: scroll;
 }
 
 #buttonHolder{
@@ -96,3 +104,8 @@ h1{
   height: 252px;
   padding-left: 30px;
   padding-top:43px
+}
+
+h2 {
+  font-size: 30px;
+}
