@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Card-Fellows: Game Page</title>
+    <link rel="stylesheet" href="../styles/reset.css">
+    <link rel="stylesheet" href="../styles/master.css">
+    <link rel="stylesheet" href="../styles/liveGame.css">
+  </head>
+  <body>
+    <header>
+      <img src="../resources/logo_large.png" alt="" height="100px">
+      <ul>
+        <li id="scores" hidden><a href="../html/stats.html">Stats</a></li>
+        <li id="play" hidden><a href="../html/game.html">Play</a></li>
+        <li><a href="../index.html">Home</a></li>
+      </ul>
+    </header>
+
+    <div>
+      <figure class="dealerHelper"><div id="toplefthelper" class="innerDealerHelper"></div></figure>
+      <figure id="dealerhand">
+        <div class="outerbox">
+          <div class="innerbox"></div>
+        </div>
+      </figure>
+      <figure class="dealerHelper"><div id="toprighthelper" class="innerDealerHelper"></div></figure>
+    </div>
+    <button id= "analyzeButton" type="button">Analyze</button>
+    <div>
+      <figure class="dealerHelper"><div id="bottomlefthelper" class="innerDealerHelper"></div></figure>
+      <figure id = "playerhand">
+        <div class="outerbox">
+          <div class="innerbox"></div>
+        </div>
+        <div class="outerbox">
+          <div class="innerbox"></div>
+        </div>
+      </figure>
+
+        <figure id="buttonHolder">
+          <div id="results"></div>
+          <button id ="hitButton" class ="gameButton" type="button" >Hit</button>
+          <button id ="stayButton" class ="gameButton" type="button" >Stay</button>
+          <button id ="splitButton" class ="gameButton" type="button" >Split</button>
+        </figure>
+
+    </div>
+    <button type="button">Hide/Show Help</button>
+    <button id="delete" type="submit">Reset Current User History</button>
+
+    <script src="../scripts/liveGame.js"></script>
+    <script src="../scripts/delete.js"></script>
+  </body>
+</html>
