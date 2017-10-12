@@ -1,29 +1,100 @@
 
 
+main {
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
+}
+
+header {
+	width: 960px;
+	margin: 0 auto;
+}
+
+header>img {
+	height: auto;
+	width: 960px;
+	margin: 0 auto;
+}
+
 hr {
 	height: 10px;
 	border: 0;
 	box-shadow: 0 10px 10px -10px #8c8b8b inset;
+	margin-bottom: 2em;
 }
 
 p {
-  padding: 2em;
-	border
+	margin: 0 auto;
+	padding: 1.5em 0;
   font-size: 1.25em;
+	line-height: 1.5em;
+	width: 70%;
 }
 
 ul {
-  width: 100%;
+	margin: 0 auto;
+  width: 90%;
 }
 
 li {
-  padding: 1em 3.8em;
+  padding: 1em 2.75em;
   margin: 0;
   display: inline;
 }
 
-p {
-  padding: 4em;
-  font-size: 1.25em;
-  line-height: 40px;
+section>section>p {
+	width: 1em;
+	margin: 0 auto;
+	padding: 0;
+}
+
+#fade {
+	height: 3000px;
+	background: rgb(0, 0, 0,); /* For browsers that do not support gradients */
+	background: -webkit-linear-gradient(rgba(0, 0, 0, 0) rgba(0, 0, 0, 1)); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)); /* Standard syntax */
+}
+
+#blank {
+	background-color: black;
+	height: 710px;
+}
+
+#blank2 {
+	background-color: black;
+	height: 100%;
+}
+
+#terminal {
+	background-color: black;
+	color: rgb(0, 255, 0);
+	text-shadow: 0 0 3px rgb(0, 255, 0);
+	opacity: 1;
+}
+
+input {
+	width: 70em;
+  border-color: black;
+	background-color: black;
+	color: rgb(0, 255, 0);
+	text-shadow: 0 0 3px rgb(0, 255, 0);
+	opacity: 1;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+
+.bigger {
+  font-size: 1.5em;
+}
+
+.red {
+	color: red;
 }

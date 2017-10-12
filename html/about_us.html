@@ -2,26 +2,47 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>About Card Fellows</title>>
+    <title>About Card Fellows</title>
     <link rel="stylesheet" href="../styles/reset.css">
-    <link rel="stylesheet" href="../styles/master.css">
-    <!-- <link rel="stylesheet" href="../styles/about_us.css"> -->
+    <link rel="stylesheet" href="../styles/colors/peach.css">
+    <link rel="stylesheet" href="../styles/about_us.css">
   </head>
   <body>
-    <header>
-        <img id="logo" src="../resources/about_us_header.png" alt="Card Fellows Logo">
-    </header>
-    <hr>
-    <main>
-      <p>&lt;&#9824;&gt; Card Fellows is the brainchild of Nicholas Carignan. Our goal is two-fold; we wanted to build a fun website to play Blackjack on, and also teach the basics of Blackjack and the science behind odds based play. With these ingredients we hope that players will have fun playing while similtaneously reinforcing the knowledge that gambling is a dangerous way to try and make money, and should be done for fun and not for proffit.
-        Nicholas Carignan and Andrew Bloom worked long hours crafting the game code, using Nicholas' knowledge of  &lt;/&#9824;&gt; </p>
-      <ul>
-        <li><img src="http://via.placeholder.com/250x375" alt=""></li>
-        <li><img src="http://via.placeholder.com/250x375" alt=""></li>
-        <li><img src="http://via.placeholder.com/250x375" alt=""></li>
-        <li><img src="http://via.placeholder.com/250x375" alt=""></li>
-      </ul>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<img src="http://via.placeholder.com/24x24" alt=""></p>
-    </main>
+    <section id="tearaway">
+      <header>
+        <img class="o90" id="logo" src="../resources/about_us_header.png" alt="Card Fellows Logo">
+      </header>
+      <hr>
+      <main class="o90">
+        <p> <span class="bigger"> &lt;&spades;&gt; </span> Card Fellows is the brainchild of Nicholas Carignan. Our goal is two-fold; we wanted to build a fun website to play Blackjack on, and also teach the basics of Blackjack and the science behind odds based play. With these ingredients we hope that players will have fun playing while similtaneously reinforcing the knowledge that gambling is a dangerous way to try and make money, and should be done for fun and not for proffit.</p>
+
+        <p>Nicholas Carignan and Andrew Bloom worked long hours crafting the game code, using Nicholas' knowledge of cards to create a solid virtual version of the game. Jeff Martinez put his experience and skills into the meta-game working on stats tracking and data manipulation functions. Dustin Mundy spent his time crafting art assets for the various pages and building the card elements out of CSS and HTML. <span class="bigger"> &lt;/&clubs;&gt; </span> </p>
+        <ul>
+          <li><img src="http://via.placeholder.com/250x375" alt=""></li>
+          <li><img src="http://via.placeholder.com/250x375" alt=""></li>
+          <li><img src="http://via.placeholder.com/250x375" alt=""></li>
+          <li><img src="http://via.placeholder.com/250x375" alt=""></li>
+        </ul>
+        <p> <span class="bigger red"> &lt;&hearts;&gt; </span> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. <span class="bigger red">&lt;/&diams;&gt;</span> </p>
+        <hr>
+      </main>
+      <section id="fade">
+        <p class="o90">&#x2b9f;</p>
+        <p class="o90">&#x2b9f;</p>
+        <p class="o90">&#x2b9f;</p>
+      </section>
+    </section>
+    <footer>
+      <form id="terminal">
+        <section id="blank"></section>
+        <label id="terminalprompt" for="field"></label>
+        <input id="field" type="text" name="field">
+        <button type="submit" name="submit" hidden></button>
+      </form>
+    </footer>
+    <script src="../scripts/about_us.js">
+    </script>
   </body>
 </html>

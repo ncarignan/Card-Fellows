@@ -1,0 +1,11 @@
+.o90 {
+  opacity: 0.7;
+}
+
+html {
+  background: rgb(255, 220, 203); /* For browsers that do not support gradients */
+  background: -webkit-radial-gradient(rgb(255, 234, 203), rgb(255, 220, 203), rgb(241, 192, 204)); /* Safari 5.1 to 6.0 */
+  background: -o-radial-gradient(rgb(255, 234, 203), rgb(255, 220, 203), rgb(241, 192, 204)); /* For Opera 11.6 to 12.0 */
+  background: -moz-radial-gradient(rgb(255, 234, 203), rgb(255, 220, 203), rgb(241, 192, 204)); /* For Firefox 3.6 to 15 */
+  background: radial-gradient(rgb(255, 234, 203), rgb(255, 220, 203), rgb(241, 192, 204)); /* Standard syntax */
+}
