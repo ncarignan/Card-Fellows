@@ -60,18 +60,12 @@ nav a {
   text-decoration: none;
 }
 
-nav a:hover {
-  color: rgb(53, 186, 137);
-
+a {
+  text-decoration: none;
 }
 
 button {
   margin: 25px auto;
-}
-
-a {
-  text-decoration: none;
-  color: black;
 }
 
 /*Card Stuff*/

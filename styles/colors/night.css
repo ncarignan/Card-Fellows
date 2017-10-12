@@ -3,6 +3,14 @@
   color: rgb(150, 117, 171);
 }
 
+nav a:hover {
+  color: rgb(147, 118, 172);
+}
+
+a {
+  color: rgb(150, 117, 171);
+}
+
 html {
   background: rgb(37, 23, 88); /* For browsers that do not support gradients */
   background: -webkit-radial-gradient(rgb(21, 43, 85), rgb(37, 23, 88)); /* Safari 5.1 to 6.0 */
