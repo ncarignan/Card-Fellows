@@ -291,6 +291,7 @@ Player.userGuideRules = function(){
 function newElement(type, content, parent){
   var newEl = document.createElement(type);
   newEl.innerHTML = content;
+  newEl.classList.add('o90');
   parent.appendChild(newEl);
 };
 
