@@ -19,22 +19,20 @@ function newElement(type, content, parent){
 var card = {};
 //print a card to the screen
 card.printCard = function(){
+  // event.preventDefault();
   var outerDiv = document.createElement('div');
   var input = document.createElement('input');
 
   playerHand.appendChild(outerDiv);
   outerDiv.appendChild(input);
-  for(var i = 0; i < 21; i++){
-    if(!event.target['playerhand' + i]) {
-      break;
-    }
-  }
+
 
   input.type = 'number';
   input.min = '1';
   input.max = '11';
-  input.name = 'playerhand' + i;
-  input.id = 'playerhand' + i;
+  input.name = 'playerhand' + (playerHand.children.length - 1);
+  input.id = 'playerhand' + (playerHand.children.length - 1);
+  input.required = true;
 
   outerDiv.classList.add('outerbox');
   input.classList.add('innerbox');
@@ -49,14 +47,15 @@ function userGuideRules(event){
   event.preventDefault();
   topLeftHelper.innerHTML = null;
   topLeftHelper.innerHTML = '<img src="../resources/logo_large.png" width="100px" id="helperLogo">';
-  console.log('Submit!');
   var playerTotal = 0;
+  console.log('Submit!');
   for(var i = 0; i < 21; i++){
     if(event.target['playerhand' + i]) {
       playerTotal += parseInt(event.target['playerhand' + i].value);
     }else{
       break;
     }
+    console.log('i is ' + i);
   }
 
   bottomLeftHelper.innerHTML = '';
