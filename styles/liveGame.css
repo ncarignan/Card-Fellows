@@ -109,3 +109,10 @@ h1{
 h2 {
   font-size: 30px;
 }
+input{
+
+padding-left: 15px;
+box-sizing:border-box;
+margin-top: 5px;
+margin-left: 5px;
+}
