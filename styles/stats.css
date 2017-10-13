@@ -29,7 +29,7 @@ section ul {
   margin-top: 20px;
   margin-bottom: 20px;
   max-height: 300px;
-  overflow: scroll;
+  overflow: auto;
 }
 
 hr {
