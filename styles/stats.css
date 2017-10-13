@@ -50,3 +50,7 @@ button {
   clear: right;
   margin-right: 50px;
 }
+
+header img{
+  opacity: 1;
+}
