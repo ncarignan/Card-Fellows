@@ -17,40 +17,39 @@
         <li><a href="../index.html">Home</a></li>
       </ul>
     </header>
-
-    <div>
-      <figure class="dealerHelper"><div id="toplefthelper" class="innerDealerHelper"></div></figure>
-      <figure id="dealerhand">
-        <div class="outerbox">
-          <div class="innerbox"></div>
-        </div>
-      </figure>
-      <figure class="dealerHelper"><div id="toprighthelper" class="innerDealerHelper"></div></figure>
-    </div>
-    <button id= "analyzeButton" type="button">Analyze</button>
-    <div>
-      <figure class="dealerHelper"><div id="bottomlefthelper" class="innerDealerHelper"></div></figure>
-      <figure id = "playerhand">
-        <div class="outerbox">
-          <div class="innerbox"></div>
-        </div>
-        <div class="outerbox">
-          <div class="innerbox"></div>
-        </div>
-      </figure>
-
-        <figure id="buttonHolder">
-          <div id="results"></div>
-          <button id ="hitButton" class ="gameButton" type="button" >Hit</button>
-          <button id ="stayButton" class ="gameButton" type="button" >Stay</button>
-          <button id ="splitButton" class ="gameButton" type="button" >Split</button>
+    <form id="calculator">
+      <div>
+        <figure class="dealerHelper"><div id="toplefthelper" class="innerDealerHelper"></div></figure>
+        <figure id="dealerdiv">
+          <div class="outerbox">
+            <div class="innerbox">
+              <input type="number" min="2" max="11" name="dealerhand" id="dealerhand">
+            </div>
+          </div>
         </figure>
-
-    </div>
-    <button type="button">Hide/Show Help</button>
-    <button id="delete" type="submit">Reset Current User History</button>
+        <figure class="dealerHelper"><div id="toprighthelper" class="innerDealerHelper"></div></figure>
+      </div>
+      <button id= "analyzeButton" type="submit">Analyze</button>
+      <div>
+        <figure class="dealerHelper"><div id="bottomlefthelper" class="innerDealerHelper"></div></figure>
+        <figure id = "playerhand">
+          <div class="outerbox">
+            <div class="innerbox">
+              <input type="number" min="1" max="11" name="playerhand0" id="playerhand0">
+            </div>
+          </div>
+          <div class="outerbox">
+            <div class="innerbox">
+              <input type="number" min="1" max="11" name="playerhand1" id="playerhand1">
+            </div>
+          </div>
+        </figure>
+        <figure id="buttonHolder">
+          <button id ="hitButton" class ="gameButton" type="button" >Hit</button>
+        </figure>
+      </div>
+    </form>
 
     <script src="../scripts/liveGame.js"></script>
-    <script src="../scripts/delete.js"></script>
   </body>
 </html>
