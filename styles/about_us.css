@@ -21,7 +21,14 @@ hr {
 	height: 10px;
 	border: 0;
 	box-shadow: 0 10px 10px -10px #8c8b8b inset;
-	margin-bottom: 2em;
+}
+
+a {
+	text-align: center;
+	display: block;
+	width: 100px;
+	margin: 0 auto;
+	text-decoration: none;
 }
 
 p {
@@ -49,6 +56,11 @@ section>section>p {
 	padding: 0;
 }
 
+img {
+	width: 250px;
+	height: auto;
+}
+
 #fade {
 	height: 3000px;
 	background: rgb(0, 0, 0,); /* For browsers that do not support gradients */
@@ -70,7 +82,7 @@ section>section>p {
 	opacity: 1;
 }
 
-input {
+input.black {
 	width: 70em;
   border-color: black;
 	background-color: black;
