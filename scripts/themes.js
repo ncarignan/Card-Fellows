@@ -12,10 +12,11 @@ if(themes[localStorage.userName]){
   case 'about_us.html':
   case 'game.html':
   case 'stats.html':
+  case 'liveGame.html':
+  default:
     themeLink.href = '../styles/colors/' + themes[localStorage.userName];
     break;
   case 'index.html':
-  default:
     themeLink.href = 'styles/colors/' + themes[localStorage.userName];
   }
 }
