@@ -155,7 +155,6 @@ Card.printCard = function(hand, suit, name){
     topLeftP.innerHTML = null;
     bottomRightP.innerHTML = null;
     logoImg.src = '../resources/logo_large.png';
-    console.log('working');
     logoImg.id = 'cardBackLogo';
     innerDiv.appendChild(logoImg);
   }

@@ -6,6 +6,7 @@ var playerHand = document.getElementById('playerhand');
 var resetButton = document.getElementById('resetButton');
 
 var calculator = document.getElementById('calculator');
+var topLeftHelper = document.getElementById('toplefthelper');
 var topRightHelper = document.getElementById('toprighthelper');
 var bottomLeftHelper = document.getElementById('bottomlefthelper');
 
@@ -46,6 +47,8 @@ var resetHandler = function(){
 
 function userGuideRules(event){
   event.preventDefault();
+  topLeftHelper.innerHTML = null;
+  topLeftHelper.innerHTML = '<img src="../resources/logo_large.png" width="100px" id="helperLogo">';
   console.log('Submit!');
   var playerTotal = 0;
   for(var i = 0; i < 21; i++){

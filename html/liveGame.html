@@ -21,8 +21,13 @@
     </header>
     <form id="calculator">
       <div>
-        <figure class="dealerHelper"><div id="toplefthelper" class="innerDealerHelper"></div></figure>
+        <figure class="dealerHelper"><div id="toplefthelper" class="innerDealerHelper"><img src="../resources/logo_large.png" width="100px" id="helperLogo"><p>Input the visible card values and hit analyze to get started!</p></div></figure>
         <figure id="dealerdiv">
+          <div class="outerbox">
+              <div class="innerbox">
+                <img src="../resources/logo_large.png" id ="cardBackLogo">
+              </div>
+          </div>
           <div class="outerbox">
               <input class="innerbox" type="number" min="2" max="11" name="dealerhand" id="dealerhand" required>
           </div>
@@ -40,7 +45,7 @@
           <div class="outerbox">
               <input class="innerbox" type="number" min="1" max="11" name="playerhand1" id="playerhand1" required>
           </div>
-        </figure> 
+        </figure>
         <figure id="buttonHolder">
           <button id ="hitButton" class ="gameButton" type="button" >Hit</button>
         </figure>
