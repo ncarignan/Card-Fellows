@@ -131,5 +131,5 @@ newElement('h1', ('Win Percentage: ' + winsVsLosses + '%'), percentEl);
 var computerPlayerArr = ['Dealer Sam', 'Ron', 'Amanda', 'Allie', 'Gary', 'Dustin', 'Demi'];
 
 for (var k = 1; k < 7; k++){
-  newElement('li', (computerPlayerArr[k] + ' ..............................................................................................................' + computerWinPercentage(k)), compStats);
+  newElement('li', (computerPlayerArr[k] + ' ..............................................................................................................' + computerWinPercentage(k) + '%'), compStats);
 }

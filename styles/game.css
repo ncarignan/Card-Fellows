@@ -118,3 +118,7 @@ div img {
 div p {
   text-align: center;
 }
+
+#buttonHolder p {
+  font-size: 1.2em;
+}

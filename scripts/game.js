@@ -271,7 +271,7 @@ Player.userGuideRules = function(){
 
 function newElement(type, content, parent){
   var newEl = document.createElement(type);
-  newEl.textContent = content;
+  newEl.innerHTML = content;
   parent.appendChild(newEl);
 };
 
@@ -290,26 +290,41 @@ Player.gameResolution = function(){
     Player.playerObjectArray[Player.currentUser()].gameOutcome.push('loss');
     Player.playerObjectArray[Player.currentUser()].losses++;
     Player.playerObjectArray[Player.currentUser()].gamesPlayed++;
+    if (Player.playerObjectArray[Player.currentUser()].gamesPlayed % 10 === 0){
+      newElement('p', '<a href="stats.html">Hey! Make sure to check out the stats page to see your results!</a>', results);
+    }
   } else if ((Player.playerObjectArray[0].handValue > Player.playerObjectArray[Player.currentUser()].handValue) && (!(Player.playerObjectArray[0].handValue > 21))){
     newElement('h1', 'You Lose!', results);
     Player.playerObjectArray[Player.currentUser()].gameOutcome.push('loss');
     Player.playerObjectArray[Player.currentUser()].losses++;
     Player.playerObjectArray[Player.currentUser()].gamesPlayed++;
+    if (Player.playerObjectArray[Player.currentUser()].gamesPlayed % 10 === 0){
+      newElement('p', '<a href="stats.html">Hey! Make sure to check out the stats page to see your results!</a>', results);
+    }
   } else if (Player.playerObjectArray[0].handValue > 21){
     newElement('h1', 'You Win!', results);
     Player.playerObjectArray[Player.currentUser()].gameOutcome.push('win');
     Player.playerObjectArray[Player.currentUser()].wins++;
     Player.playerObjectArray[Player.currentUser()].gamesPlayed++;
+    if (Player.playerObjectArray[Player.currentUser()].gamesPlayed % 10 === 0){
+      newElement('p', '<a href="stats.html">Hey! Make sure to check out the stats page to see your results!</a>', results);
+    }
   } else if ((Player.playerObjectArray[Player.currentUser()].handValue <= 21) && (Player.playerObjectArray[0].handValue < Player.playerObjectArray[Player.currentUser()].handValue)){
     newElement('h1', 'You Win!', results);
     Player.playerObjectArray[Player.currentUser()].gameOutcome.push('win');
     Player.playerObjectArray[Player.currentUser()].wins++;
     Player.playerObjectArray[Player.currentUser()].gamesPlayed++;
+    if (Player.playerObjectArray[Player.currentUser()].gamesPlayed % 10 === 0){
+      newElement('p', '<a href="stats.html">Hey! Make sure to check out the stats page to see your results!</a>', results);
+    }
   } else if (Player.playerObjectArray[0].handValue === Player.playerObjectArray[Player.currentUser()].handValue){
     newElement('h1', 'A Tie!', results);
     Player.playerObjectArray[Player.currentUser()].gameOutcome.push('tie');
     Player.playerObjectArray[Player.currentUser()].ties++;
     Player.playerObjectArray[Player.currentUser()].gamesPlayed++;
+    if (Player.playerObjectArray[Player.currentUser()].gamesPlayed % 10 === 0){
+      newElement('p', '<a href="stats.html">Hey! Make sure to check out the stats page to see your results!</a>', results);
+    }
   } else {
     console.log('Congrats, you found the condition under which our game doesn\'t work!');
   }
