@@ -31,6 +31,7 @@
     <p id="losing" hidden>Looks like you're a little down on your luck. Don't fall into the gambler's fallacy and assume you're about to hit a winning streak. The odds are the same whether you've been winning or losing.</p>
     <p id="trend" hidden>Hey, so you've been playing a while now. I hope you can see that even when you're playing to your best odds, the trend will even out towards winning about 50% of the time.</p>
   </article>
+  <button id="delete" type="submit">Reset Current User History</button>
   <section id="section2">
     <h1>Computer Player Stats</h1>
     <hr />
@@ -38,16 +39,16 @@
     </ul>
     <hr />
   </section>
-  <article>
-    <p id="computer1explained" hidden>This Computer</p>
-    <p id="computer2explained" hidden>This Computer</p>
-    <p id="computer3explained" hidden>This Computer</p>
-    <p id="computer4explained" hidden>This Computer</p>
-    <p id="computer5explained" hidden>This Computer</p>
-    <p id="computer6explained" hidden>This Computer</p>
+  <article id="explainCompRules">
+    <p id="whatsgoingon">To the left are the other players at your table! They are each playing by slightly different rules. Hover over their names to see what rules they play by. Then you can see general trends based on how you might play the game.</p>
+    <p id="computer1explained" hidden>Ron always hits.</p>
+    <p id="computer2explained" hidden>Amanda always stays.</p>
+    <p id="computer3explained" hidden>Allie plays conservatively, and only hits if her hand adds up to less than 15.</p>
+    <p id="computer4explained" hidden>Gary plays liberally, always hitting when his hand adds up to less than 19.</p>
+    <p id="computer5explained" hidden>Dustin plays recklessly, and randomly hits or stays.</p>
+    <p id="computer6explained" hidden>Demi plays it smart, and follows our guide rules.</p>
 
   </article>
-  <button id="delete" type="submit">Reset Current User History</button>
   <script type="text/javascript" src="../scripts/themes.js"></script>
   <script type="text/javascript" src="../scripts/stats.js"></script>
   <script type="text/javascript" src="../scripts/delete.js"></script>

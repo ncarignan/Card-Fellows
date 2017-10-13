@@ -12,9 +12,14 @@ article {
   margin-top: 75px;
 }
 
+#explainCompRules {
+  margin-top: 0;
+}
+
 h1 {
   margin: 0;
   text-align: center;
+  font-size: 30px;
 }
 
 p {
@@ -28,7 +33,10 @@ li {
 section ul {
   margin-top: 20px;
   margin-bottom: 20px;
-  max-height: 300px;
+
+
+  max-height: 100px;
+
   overflow: auto;
 }
 
