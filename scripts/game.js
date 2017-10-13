@@ -1,6 +1,5 @@
 'use strict';
 
-
 //declare globals
 var hitButton = document.getElementById('hitButton');
 var stayButton = document.getElementById('stayButton');
@@ -187,7 +186,6 @@ Card.dealerFunction = function(){
   Card.printCard(Player.computer0Hand, null, null);
   Card.printCard(Player.computer0Hand, Player.playerObjectArray[0].handCards[1].suit , Player.playerObjectArray[0].handCards[1].name);
 
-
   Card.printCard(playerHand, Player.playerObjectArray[Player.currentUser()].handCards[0].suit, Player.playerObjectArray[Player.currentUser()].handCards[0].name);
   Card.printCard(playerHand, Player.playerObjectArray[Player.currentUser()].handCards[1].suit, Player.playerObjectArray[Player.currentUser()].handCards[1].name);
 
@@ -199,12 +197,8 @@ Card.dealerFunction = function(){
 //Sums the cards in a player's hand
 Player.handSum = function(i){
   Player.playerObjectArray[i].handValue = 0;
-  // console.log('reset is Success');
-  // console.log(Player.playerObjectArray[i]);
   for(var j in Player.playerObjectArray[i].handCards){
-    // console.log('sums handCards');
     Player.playerObjectArray[i].handValue += Player.playerObjectArray[i].handCards[j].value;
-    // console.log(Player.playerObjectArray[i].handValue);
   }
   if (Player.playerObjectArray[i].handValue > 21){
     for (var k in Player.playerObjectArray[i].handCards){
@@ -352,7 +346,7 @@ Player.gameResolution = function(){
       newElement('p', '<a href="stats.html">Hey! Make sure to check out the stats page to see your results!</a>', results);
     }
   } else {
-    console.log('Congrats, you found the condition under which our game doesn\'t work!');
+    alert('Congrats, you found the condition under which our game doesn\'t work!');
   }
   Player.computerStoragePush();
   localStorage.playerObjectArray = JSON.stringify(Player.playerObjectArray);
@@ -383,14 +377,13 @@ Player.computerStoragePush = function(){
       Player.playerObjectArray[i].gamesPlayed++;
       Player.playerObjectArray[0].gamesPlayed++;
     } else {
-      console.log('Congrats, you found the condition under which our game doesn\'t work!');
+      alert('Congrats, you found the condition under which our game doesn\'t work!');
     }
   }
 };
 
 //Handles what happens when you hit
 Player.hitHandler = function(){
-  console.log('hit');
   splitButton.style.display = 'none';
   Player.playerObjectArray[Player.currentUser()].handCards.push(Card.randomCard());
   //takes the last card in the hand and writes it to the page
@@ -424,7 +417,6 @@ Player.dealHandler = function(){
   Card.cardCreator();
   playerHand.innerHTML = null;
   Player.computer0Hand.innerHTML = null;
-  console.log('deal');
   Player.toggleGameEventListenersOn();
   Card.dealerFunction();
   Player.userGuideRules();

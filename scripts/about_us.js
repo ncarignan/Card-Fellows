@@ -16,7 +16,7 @@ terminalprompt.textContent = '/card_fellows/users/' + localStorage.userName + '/
 window.onscroll = function(){
   if ((window.innerHeight + window.scrollY + 5) >= document.body.offsetHeight) {
     tearaway.innerHTML = '';
-    document.getElementById('field').focus();
+    field.focus();
   }
 };
 

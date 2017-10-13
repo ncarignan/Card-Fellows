@@ -19,13 +19,11 @@ function newElement(type, content, parent){
 var card = {};
 //print a card to the screen
 card.printCard = function(){
-  // event.preventDefault();
   var outerDiv = document.createElement('div');
   var input = document.createElement('input');
 
   playerHand.appendChild(outerDiv);
   outerDiv.appendChild(input);
-
 
   input.type = 'number';
   input.min = '1';
@@ -36,7 +34,6 @@ card.printCard = function(){
 
   outerDiv.classList.add('outerbox');
   input.classList.add('innerbox');
-
 };
 
 var resetHandler = function(){
@@ -48,14 +45,12 @@ function userGuideRules(event){
   topLeftHelper.innerHTML = null;
   topLeftHelper.innerHTML = '<img src="../resources/logo_large.png" width="100px" id="helperLogo">';
   var playerTotal = 0;
-  console.log('Submit!');
   for(var i = 0; i < 21; i++){
     if(event.target['playerhand' + i]) {
       playerTotal += parseInt(event.target['playerhand' + i].value);
     }else{
       break;
     }
-    console.log('i is ' + i);
   }
 
   bottomLeftHelper.innerHTML = '';
@@ -68,7 +63,7 @@ function userGuideRules(event){
     }else if(playerTotal < 13){
       newElement('p', 'The probability of busting on a 12 is 31%. You should hit!', bottomLeftHelper);
     }else{
-      newElement('p', 'The probability of busting on a hit greater than 39%. You should stay!', bottomLeftHelper);// console.log('stay');
+      newElement('p', 'The probability of busting on a hit greater than 39%. You should stay!', bottomLeftHelper);
     }
   }
   if([4,5,6].includes(parseInt(event.target.dealerhand.value))){
