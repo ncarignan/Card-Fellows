@@ -1,18 +1,6 @@
 'use strict';
 
 // ######### //
-// Reference //
-// ######### //
-
-// Relevant Object Properties
-// currentUser.name
-// currentUser.wins
-// currentUser.losses
-// currentUser.ties
-// currentUser.gamesPlayed
-// currentUser.gameOutcome
-
-// ######### //
 //   Codez   //
 // ######### //
 
@@ -36,7 +24,6 @@ var comp3 = document.getElementById('computer3explained');
 var comp4 = document.getElementById('computer4explained');
 var comp5 = document.getElementById('computer5explained');
 var comp6 = document.getElementById('computer6explained');
-
 
 // Get userName + game info/Set globals
 var userName = localStorage.userName;
@@ -142,7 +129,6 @@ for (var j = 0; j < currentUser.gamesPlayed; j++){
 newElement('h1', ('Win Percentage: ' + winsVsLosses + '%'), percentEl);
 
 var computerPlayerArr = ['Dealer Sam', 'Ron', 'Amanda', 'Allie', 'Gary', 'Dustin', 'Demi'];
-
 
 if (playerObjectArray[0].gamesPlayed === 0){
   section2.style.display = 'none';

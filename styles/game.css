@@ -1,51 +1,44 @@
-*{
-  /*border: solid red 1px;*/
-}
-body{
-  /*border:solid black 1px;*/
-}
-
 header{
   margin-bottom: 30px;
 }
+
 figure {
-  display:inline-block;
+  display: inline-block;
   box-sizing: border-box;
 }
 
 figure p {
-  text-color: inherit;
+  color: inherit;
   font-size: .6em;
   padding: 10px;
   overflow: auto;
 }
 
 figure ul li {
-  display:inline-block;
+  display: inline-block;
   padding-left: 30px;
   padding-top: 30px
 }
 
 h1{
-  margin:0;
+  margin: 0;
   text-align: center;
-  margin-top:7  0px;
+  margin-top: 0px;
 }
 
 .dealerHelper {
-  /*border: solid black 1px;*/
   height: 252px;
   width: 180px;
-  margin-top:0;
+  margin-top: 0;
   background-color: black;
   background: -webkit-linear-gradient(left top, rgb(250,250,250), rgb(210,210,210)); /* For Safari 5.1 to 6.0 */
   background: -o-linear-gradient(bottom right, rgb(250,250,250), rgb(210,210,210)); /* For Opera 11.1 to 12.0 */
   background: -moz-linear-gradient(bottom right, rgb(250,250,250), rgb(210,210,210)); /* For Firefox 3.6 to 15 */
   background: linear-gradient(to bottom right, rgb(250,250,250), rgb(210,210,210)); /* Standard syntax */
   border-radius: 1em;
-  display:inline-block;
-  /*display:inline-block;*/
+  display: inline-block;
 }
+
 .innerDealerHelper{
   position: relative;
   left: 4px;
@@ -65,35 +58,33 @@ h1{
 }
 
 #buttonHolder{
-  width:180px;
-  float:right;
-  height:252px;
+  width: 180px;
+  float: right;
+  height: 252px;
 }
 
 .gameButton {
   display: block;
-  float:left
-  position:relative;
-  width:180px;
-  height:49px;
-  background-color
+  width: 180px;
+  height: 49px;
 }
+
 #cardBackLogo{
-  width:95px;
-  height:95px;
-  margin:auto;
+  width: 95px;
+  height: 95px;
+  margin: auto;
   margin-top: 30px;
 }
+
 #dealButton{
-  margin:0 400px 0 400px 0;
-  width:150px;
-  height:50px;
-  display:block;
+  margin: 0 400px 0 400px 0;
+  width: 150px;
+  height: 50px;
+  display: block;
 }
 
 #dealerhand {
   width: 590px;
-  /*border: solid black 1px;*/
   height: 252px;
   padding-left: 85px;
   padding-top: 43px;
@@ -101,10 +92,9 @@ h1{
 
 #playerhand {
   width: 590px;
-  /*border: solid black 1px;*/
   height: 252px;
   padding-left: 85px;
-  padding-top:43px
+  padding-top: 43px
 }
 
 h2 {

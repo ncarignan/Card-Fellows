@@ -5,6 +5,7 @@
 h1, h2, h3, h4, h5, h6{
   font-family: 'Signika Negative', sans-serif;
 }
+
 body {
   width: 960px;
   margin: 0 auto;
@@ -106,9 +107,9 @@ button {
 
 .outerbox {
   margin-left: -75px;
-  margin-top:0;
+  margin-top: 0;
   position: relative;
-  top:-20px;
+  top: -20px;
   height: 203px;
   width: 145px;
   background-color: black;
@@ -117,7 +118,7 @@ button {
   background: -moz-linear-gradient(bottom right, rgb(250,250,250), rgb(210,210,210)); /* For Firefox 3.6 to 15 */
   background: linear-gradient(to bottom right, rgb(250,250,250), rgb(210,210,210)); /* Standard syntax */
   border-radius: 1em;
-  display:inline-block;
+  display: inline-block;
 }
 
 .innerbox {
@@ -161,7 +162,6 @@ button {
 
 .topleft {
   float: left;
-  margin:
 }
 
 .topright {
