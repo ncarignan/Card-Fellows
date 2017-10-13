@@ -80,11 +80,18 @@ h1{
 }
 
 #analyzeButton{
-  margin:0 400px 0 400px 0;
+  margin:0 25px 0 300px;
   width:150px;
   height:50px;
-  display:block;
+  display:inline-block;
 }
+#resetButton{
+  margin:0 250px 0 25px;
+  width:150px;
+  height:50px;
+  display:inline-block;
+}
+
 
 #dealerdiv {
   width: 590px;

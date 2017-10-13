@@ -3,6 +3,7 @@
 //declare button id's
 var hitButton = document.getElementById('hitButton');
 var playerHand = document.getElementById('playerhand');
+var resetButton = document.getElementById('resetButton');
 
 var calculator = document.getElementById('calculator');
 var topRightHelper = document.getElementById('toprighthelper');
@@ -18,13 +19,10 @@ var card = {};
 //print a card to the screen
 card.printCard = function(){
   var outerDiv = document.createElement('div');
-  var innerDiv = document.createElement('div');
   var input = document.createElement('input');
 
   playerHand.appendChild(outerDiv);
-  outerDiv.appendChild(innerDiv);
-  innerDiv.appendChild(input);
-
+  outerDiv.appendChild(input);
   for(var i = 0; i < 21; i++){
     if(!event.target['playerhand' + i]) {
       break;
@@ -38,7 +36,12 @@ card.printCard = function(){
   input.id = 'playerhand' + i;
 
   outerDiv.classList.add('outerbox');
-  innerDiv.classList.add('innerbox');
+  input.classList.add('innerbox');
+
+};
+
+var resetHandler = function(){
+  location.reload();
 };
 
 function userGuideRules(event){
@@ -91,5 +94,6 @@ function userGuideRules(event){
 }
 
 calculator.addEventListener('submit', userGuideRules);
+resetButton.addEventListener('click', resetHandler);
 
 hitButton.addEventListener('click', function(){ card.printCard(); });
