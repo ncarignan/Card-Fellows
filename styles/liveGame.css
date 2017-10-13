@@ -89,8 +89,8 @@ h1{
 #dealerdiv {
   width: 590px;
   /*border: solid black 1px;*/
-  height: 252px;
-  padding-left:30px;
+  height: 252p;
+  padding-left: 85px;
   padding-top:43px;
 }
 #computerHands{
@@ -102,7 +102,7 @@ h1{
   width: 590px;
   /*border: solid black 1px;*/
   height: 252px;
-  padding-left: 30px;
+  padding-left: 85px;
   padding-top:43px
 }
 
