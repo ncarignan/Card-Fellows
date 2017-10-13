@@ -11,6 +11,10 @@ html {
   background: radial-gradient(rgb(116, 125, 21), rgb(76, 117, 19)); /* Standard syntax */
 }
 
+input {
+  background-color: rgb(76, 117, 19);
+}
+
 a, button {
   background-color: rgba(0,0,0,.1);
   color: black;
