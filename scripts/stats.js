@@ -25,7 +25,10 @@ var losing = document.getElementById('losing');
 var winning = document.getElementById('winning');
 var trend = document.getElementById('trend');
 var section = document.getElementById('section');
+var section2 = document.getElementById('section2');
+var deleteButton = document.getElementById('delete');
 var compStats = document.getElementById('compstats');
+var explainCompRules = document.getElementById('explainCompRules');
 var whatshappening = document.getElementById('whatsgoingon');
 var comp1 = document.getElementById('computer1explained');
 var comp2 = document.getElementById('computer2explained');
@@ -38,17 +41,18 @@ var comp6 = document.getElementById('computer6explained');
 // Get userName + game info/Set globals
 var userName = localStorage.userName;
 var currentUser = null;
+var playerObjectArray = null;
 if (localStorage.playerObjectArray){
-  var playerObjectArray = JSON.parse(localStorage.playerObjectArray);
+  playerObjectArray = JSON.parse(localStorage.playerObjectArray);
 } else {
-  playerObjectArray = {name: localStorage.userName,
+  playerObjectArray = [{name: localStorage.userName,
     handCards: [],
     gameOutcome: [],
     gamesPlayed: 0,
     handValue: 0 ,
     wins: 0,
     losses: 0,
-    ties: 0};
+    ties: 0}];
   currentUser = playerObjectArray;
 }
 var winsVsLosses = null;
@@ -139,8 +143,20 @@ newElement('h1', ('Win Percentage: ' + winsVsLosses + '%'), percentEl);
 
 var computerPlayerArr = ['Dealer Sam', 'Ron', 'Amanda', 'Allie', 'Gary', 'Dustin', 'Demi'];
 
-for (var k = 1; k < 7; k++){
-  newElement('li', (computerPlayerArr[k] + ' ..............................................................................................................' + computerWinPercentage(k) + '%'), compStats, ('c' + k));
+
+if (playerObjectArray[0].gamesPlayed === 0){
+  section2.style.display = 'none';
+  explainCompRules.style.display = 'none';
+  deleteButton.style.display = 'none';
+} else {
+  section2.style.display = 'block';
+  explainCompRules.style.display = 'block';
+  deleteButton.style.display = 'block';
+  for (var k = 1; k < 7; k++){
+    if (!((playerObjectArray[k].wins + playerObjectArray[k].losses) === 0)){
+      newElement('li', (computerPlayerArr[k] + ' ..............................................................................................................' + computerWinPercentage(k) + '%'), compStats, ('c' + k));
+    }
+  }
 }
 
 compStats.addEventListener('mouseover', show);
