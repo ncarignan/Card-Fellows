@@ -106,7 +106,8 @@ Card.printCard = function(hand, suit, name){
   var topRightP = document.createElement('h2');
   var bottomLeftP = document.createElement('h2');
   var bottomRightP = document.createElement('h2');
-
+  var logoImg = document.createElement('img')
+;
   hand.appendChild(outerDiv);
   outerDiv.appendChild(innerDiv);
   innerDiv.appendChild(topLeftP);
@@ -144,12 +145,20 @@ Card.printCard = function(hand, suit, name){
     innerDiv.classList.add('innerboxr');
     break;
   default:
-    topRightP.innerHTML = '&spades;';
-    bottomLeftP.innerHTML = '&spades;';
+    topRightP.innerHTML = null;
+    bottomLeftP.innerHTML = null;
     innerDiv.classList.add('innerbox');
   }
   topLeftP.innerHTML = '&lt;' + name + '&gt;';
   bottomRightP.innerHTML = '&lt;/' + name + '&gt;';
+  if(suit === null){
+    topLeftP.innerHTML = null;
+    bottomRightP.innerHTML = null;
+    logoImg.src = '../resources/logo_large.png';
+    console.log('working');
+    logoImg.id = 'cardBackLogo';
+    innerDiv.appendChild(logoImg);
+  }
 };
 
 //selects a random card's integer and checks to make sure it is unique
@@ -170,7 +179,7 @@ Card.dealerFunction = function(){
   Player.playerObjectArray[Player.currentUser()].handCards.push(Card.randomCard());
   Player.playerObjectArray[Player.currentUser()].handCards.push(Card.randomCard());
 
-
+  Card.printCard(Player.computer0Hand, null, null);
   Card.printCard(Player.computer0Hand, Player.playerObjectArray[0].handCards[1].suit , Player.playerObjectArray[0].handCards[1].name);
 
 
@@ -240,7 +249,7 @@ Player.userGuideRules = function(){
   bottomLeftHelper.innerHTML = null;
   Player.handSum(Player.currentUser());
   if([2,3].includes(Player.playerObjectArray[0].handCards[1].value)){
-    newElement('p', 'When the dealer has a 2 or a 3 showing, their odds of busting are about 36%. The player has an 11% higher chance to win with any hand', topRightHelper);
+    newElement('p', 'When the dealer has a 2 or a 3 showing, their odds of busting are about 36%. The player has an 11% higher chance to win against these cards', topRightHelper);
     if(Player.playerObjectArray[Player.currentUser()].handValue < 13){
       newElement('p', 'The probability of busting on a 12 is 31%. Anything lower than that is impossible to bust on. You should hit!', bottomLeftHelper);
     }else{
@@ -248,7 +257,7 @@ Player.userGuideRules = function(){
     }
   }
   if([4,5,6].includes(Player.playerObjectArray[0].handCards[1].value)){
-    newElement('p', 'When the dealer has a 4, 5 or 6 showing, their odds of busting are about 41%. The player has an 22% higher chance to win with any hand.', topRightHelper);
+    newElement('p', 'When the dealer has a 4, 5 or 6 showing, their odds of busting are about 41%. The player has an 22% higher chance to win against these cards', topRightHelper);
     if(Player.playerObjectArray[Player.currentUser()].handValue < 12){
       newElement('p', 'The probability of busting on a hit is 0%. You should hit!', bottomLeftHelper);
     }else{
@@ -256,7 +265,7 @@ Player.userGuideRules = function(){
     }
   }
   if([7,8,9].includes(Player.playerObjectArray[0].handCards[1].value)){
-    newElement('p', 'When the dealer has a 7, 8 or 9 showing, their odds of busting are about 24%. The player has an 14%, 5%, and -4% higher chance to win with any hand.', topRightHelper);
+    newElement('p', 'When the dealer has a 7, 8 or 9 showing, their odds of busting are about 24%. The player has an 14% higher chance to win against a 7, 5% against an 8, but a 4% higher chance to lose or tie against a 9.', topRightHelper);
     if(Player.playerObjectArray[Player.currentUser()].handValue < 17){
       newElement('p', 'The probability of busting on a hit is less than 62%. However, there\'s a good chance the dealer will beat you if you don\'t. You should hit!', bottomLeftHelper);
     }else{
@@ -264,7 +273,7 @@ Player.userGuideRules = function(){
     }
   }
   if([10,11].includes(Player.playerObjectArray[0].handCards[1].value)){
-    newElement('p', 'When the dealer has a card of value 10 or 11 showing, their odds of busting are about 21%, unless they have an ace. With an Ace, their odds are busting are about 12%. The player has a 22% higher chance to lose with any hand.', topRightHelper);
+    newElement('p', 'When the dealer has a card of value 10 or 11 showing, their odds of busting are about 21%, unless they have an ace. With an Ace, their odds are busting are about 12%. The player has a 22% higher chance to lose or tie against these cards.', topRightHelper);
     if(Player.playerObjectArray[Player.currentUser()].handValue < 17 ){
       newElement('p', 'The probability of busting on a hit is less than 62%. However, there\'s a good chance the dealer will beat you if you don\'t. You should hit!', bottomLeftHelper);
     }else{
