@@ -29,7 +29,8 @@ header ul li {
 
 header img {
   float: left;
-  size: 100px auto;
+  width: 100px;
+  height: auto;
   display: block;
 }
 
@@ -55,12 +56,15 @@ h3 {
 
 nav {
   float: left;
+  clear: left;
   width: 100px;
 }
 
 nav a {
+  border-radius: 25px;
   text-align: center;
-  margin: 100px 0px 0px 20px;
+  margin-top: 60px;
+  padding: 10px 0 10px 0;
   width: auto;
   display: block;
   text-decoration: none;
@@ -71,7 +75,9 @@ a {
 }
 
 button {
-  margin: 25px auto;
+  margin: 20px auto;
+  padding: 5px 5px;
+  border-radius: 25px;
 }
 
 #paragraph {
@@ -88,6 +94,12 @@ button {
   padding-top: 10px;
   text-align: left;
   line-height: 20px;
+}
+
+.spacer {
+  float:right;
+  width: 100px;
+  margin-left: 1px;
 }
 
 /*Card Stuff*/

@@ -21,7 +21,6 @@ nav a:hover {
 a, button {
   background-color : rgba(0,0,0,0);
   color: rgb(150, 117, 171);
-  border-radius: .3em;
   border-width: 0px;
   box-shadow: 0 0 3px rgb(124, 252, 255);
 }
