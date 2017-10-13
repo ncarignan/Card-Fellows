@@ -10,6 +10,7 @@ var results = document.getElementById('results');
 var staticPlayerNameArray = ['Dealer', 'Player1', 'Player2', 'Player3', 'Player4', 'Player5', 'Player6'];
 var topRightHelper = document.getElementById('toprighthelper');
 var bottomLeftHelper = document.getElementById('bottomlefthelper');
+var topLeftHelper = document.getElementById('toplefthelper');
 Player.computer0Hand = document.getElementById('dealerhand');
 Player.computer1Hand = document.getElementById('computer1Hand');
 Player.computer2Hand = document.getElementById('computer2Hand');
@@ -162,9 +163,9 @@ Card.dealerFunction = function(){
   Player.playerObjectArray[Player.currentUser()].handCards.push(Card.randomCard());
   Player.playerObjectArray[Player.currentUser()].handCards.push(Card.randomCard());
 
-  for (var j = 0; j < 7; j++){
-    Card.printCard(eval('Player.computer' + j + 'Hand'), Player.playerObjectArray[j].handCards[1].suit , Player.playerObjectArray[j].handCards[1].name);
-  }
+
+  Card.printCard(Player.computer0Hand, Player.playerObjectArray[0].handCards[1].suit , Player.playerObjectArray[0].handCards[1].name);
+
 
   Card.printCard(playerHand, Player.playerObjectArray[Player.currentUser()].handCards[0].suit, Player.playerObjectArray[Player.currentUser()].handCards[0].name);
   Card.printCard(playerHand, Player.playerObjectArray[Player.currentUser()].handCards[1].suit, Player.playerObjectArray[Player.currentUser()].handCards[1].name);
@@ -184,7 +185,9 @@ Player.computerPlaysHand = function(){
     Player.handSum(i);
     while (Player.playerObjectArray[i].handValue < Player.hitNumArr[i]){
       Player.playerObjectArray[i].handCards.push(Card.randomCard());
-      Card.printCard(eval('Player.computer' + i + 'Hand'), Player.playerObjectArray[i].handCards[Player.playerObjectArray[i].handCards.length - 1].suit, Player.playerObjectArray[i].handCards[Player.playerObjectArray[i].handCards.length - 1].name);
+      if (i === 0){
+        Card.printCard((Player.computer0Hand), Player.playerObjectArray[i].handCards[Player.playerObjectArray[i].handCards.length - 1].suit, Player.playerObjectArray[i].handCards[Player.playerObjectArray[i].handCards.length - 1].name);
+      }
       Player.handSum(i);
     }
   }
@@ -268,7 +271,7 @@ Player.userGuideRules = function(){
 
 function newElement(type, content, parent){
   var newEl = document.createElement(type);
-  newEl.textContent = content;
+  newEl.innerHTML = content;
   parent.appendChild(newEl);
 };
 
@@ -287,26 +290,41 @@ Player.gameResolution = function(){
     Player.playerObjectArray[Player.currentUser()].gameOutcome.push('loss');
     Player.playerObjectArray[Player.currentUser()].losses++;
     Player.playerObjectArray[Player.currentUser()].gamesPlayed++;
+    if (Player.playerObjectArray[Player.currentUser()].gamesPlayed % 10 === 0){
+      newElement('p', '<a href="stats.html">Hey! Make sure to check out the stats page to see your results!</a>', results);
+    }
   } else if ((Player.playerObjectArray[0].handValue > Player.playerObjectArray[Player.currentUser()].handValue) && (!(Player.playerObjectArray[0].handValue > 21))){
     newElement('h1', 'You Lose!', results);
     Player.playerObjectArray[Player.currentUser()].gameOutcome.push('loss');
     Player.playerObjectArray[Player.currentUser()].losses++;
     Player.playerObjectArray[Player.currentUser()].gamesPlayed++;
+    if (Player.playerObjectArray[Player.currentUser()].gamesPlayed % 10 === 0){
+      newElement('p', '<a href="stats.html">Hey! Make sure to check out the stats page to see your results!</a>', results);
+    }
   } else if (Player.playerObjectArray[0].handValue > 21){
     newElement('h1', 'You Win!', results);
     Player.playerObjectArray[Player.currentUser()].gameOutcome.push('win');
     Player.playerObjectArray[Player.currentUser()].wins++;
     Player.playerObjectArray[Player.currentUser()].gamesPlayed++;
+    if (Player.playerObjectArray[Player.currentUser()].gamesPlayed % 10 === 0){
+      newElement('p', '<a href="stats.html">Hey! Make sure to check out the stats page to see your results!</a>', results);
+    }
   } else if ((Player.playerObjectArray[Player.currentUser()].handValue <= 21) && (Player.playerObjectArray[0].handValue < Player.playerObjectArray[Player.currentUser()].handValue)){
     newElement('h1', 'You Win!', results);
     Player.playerObjectArray[Player.currentUser()].gameOutcome.push('win');
     Player.playerObjectArray[Player.currentUser()].wins++;
     Player.playerObjectArray[Player.currentUser()].gamesPlayed++;
+    if (Player.playerObjectArray[Player.currentUser()].gamesPlayed % 10 === 0){
+      newElement('p', '<a href="stats.html">Hey! Make sure to check out the stats page to see your results!</a>', results);
+    }
   } else if (Player.playerObjectArray[0].handValue === Player.playerObjectArray[Player.currentUser()].handValue){
     newElement('h1', 'A Tie!', results);
     Player.playerObjectArray[Player.currentUser()].gameOutcome.push('tie');
     Player.playerObjectArray[Player.currentUser()].ties++;
     Player.playerObjectArray[Player.currentUser()].gamesPlayed++;
+    if (Player.playerObjectArray[Player.currentUser()].gamesPlayed % 10 === 0){
+      newElement('p', '<a href="stats.html">Hey! Make sure to check out the stats page to see your results!</a>', results);
+    }
   } else {
     console.log('Congrats, you found the condition under which our game doesn\'t work!');
   }
@@ -334,8 +352,9 @@ Player.computerStoragePush = function(){
       Player.playerObjectArray[i].gamesPlayed++;
     } else {
       console.log('Congrats, you found the condition under which our game doesn\'t work!');
+    }
   }
-}
+};
 
 Player.hitHandler = function(){
   console.log('hit');
@@ -361,15 +380,15 @@ Player.splitHandler = function(){
 //deals out cards and turns on hit/stay
 Player.dealHandler = function(){
   results.innerHTML = null;
+  topLeftHelper.innerHTML = null;
+  topLeftHelper.innerHTML = '<img src="../resources/logo_large.png" width="100px">';
   dealButton.style.display = 'none';
   hitButton.style.display = 'block';
   stayButton.style.display = 'block';
   splitButton.style.display = 'none';
   Card.cardCreator();
   playerHand.innerHTML = null;
-  for (var i in staticPlayerNameArray){
-    eval('Player.computer' + i + 'Hand').innerHTML = null;
-  }
+  Player.computer0Hand.innerHTML = null;
   console.log('deal');
   Player.toggleGameEventListenersOn();
   Card.dealerFunction();
@@ -377,11 +396,9 @@ Player.dealHandler = function(){
 };
 
 Player.dealerCardWriter = function(){
-  for (var j = 0; j < 7; j++){
-    (eval('Player.computer' + j + 'Hand')).innerHTML = null;
-    for (var i = 0; i < Player.playerObjectArray[j].handCards.length; i++)
-      Card.printCard(eval('Player.computer' + j + 'Hand'), Player.playerObjectArray[j].handCards[i].suit, Player.playerObjectArray[j].handCards[i].name);
-  }
+  Player.computer0Hand.innerHTML = null;
+  for (var i = 0; i < Player.playerObjectArray[0].handCards.length; i++)
+    Card.printCard(Player.computer0Hand, Player.playerObjectArray[0].handCards[i].suit, Player.playerObjectArray[0].handCards[i].name);
 };
 
 dealButton.addEventListener('click', Player.dealHandler);
