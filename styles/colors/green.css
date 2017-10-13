@@ -3,20 +3,29 @@
   color: rgb(0, 62, 21);
 }
 
-nav a:hover {
-  color: rgb(53, 186, 137);
-}
-
-a {
-  color: rgb(0, 62, 21);
-}
-
 html {
   background: rgb(76, 117, 19); /* For browsers that do not support gradients */
   background: -webkit-radial-gradient(rgb(116, 125, 21), rgb(76, 117, 19)); /* Safari 5.1 to 6.0 */
   background: -o-radial-gradient(rgb(116, 125, 21), rgb(76, 117, 19)); /* For Opera 11.6 to 12.0 */
   background: -moz-radial-gradient(rgb(116, 125, 21), rgb(76, 117, 19)); /* For Firefox 3.6 to 15 */
   background: radial-gradient(rgb(116, 125, 21), rgb(76, 117, 19)); /* Standard syntax */
+}
+
+a, button {
+  background-color: rgba(0,0,0,.1);
+  color: black;
+  border-radius: .3em;
+  border-width: 0px;
+  box-shadow: 0 0 3px green;
+}
+
+a:hover, button:hover {
+  color: rgb(0, 255, 0);
+  background-color: rgba(0, 0, 0, .7);
+}
+
+ul>li>a {
+  box-shadow: 0 0 0px rgb(124, 252, 255);
 }
 
 /*Card Stuff*/

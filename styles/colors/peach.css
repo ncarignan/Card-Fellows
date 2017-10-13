@@ -1,13 +1,10 @@
 .o90 {
+  color: rgb(78, 0, 18);
   opacity: 0.7;
 }
 
 nav a:hover {
-  color: rgb(255, 209, 170);
-}
-
-a {
-  color: black;
+  color: rgb(147, 118, 172);
 }
 
 html {
@@ -16,6 +13,22 @@ html {
   background: -o-radial-gradient(rgb(255, 234, 203), rgb(255, 220, 203), rgb(241, 192, 204)); /* For Opera 11.6 to 12.0 */
   background: -moz-radial-gradient(rgb(255, 234, 203), rgb(255, 220, 203), rgb(241, 192, 204)); /* For Firefox 3.6 to 15 */
   background: radial-gradient(rgb(255, 234, 203), rgb(255, 220, 203), rgb(241, 192, 204)); /* Standard syntax */
+}
+
+a, button {
+  background-color : rgba(0,0,0,0);
+  color: rgb(78, 0, 18);
+  border-radius: .3em;
+  border-width: 0px;
+  box-shadow: 0 0 5px rgb(195, 98, 121);
+}
+
+a:hover, button:hover {
+  background-color : rgba(255, 199, 170, .7);
+}
+
+ul>li>a {
+  box-shadow: 0 0 0px rgb(195, 98, 121);
 }
 
 /*Card Stuff*/
