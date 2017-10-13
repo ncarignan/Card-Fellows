@@ -1,5 +1,6 @@
 'use strict';
 
+Player.hitNumArr = [17, 21, 0, 15, 18, Player.randomHit, Player.demiRules];
 //declare button id's
 var hitButton = document.getElementById('hitButton');
 var stayButton = document.getElementById('stayButton');
@@ -10,6 +11,7 @@ var results = document.getElementById('results');
 var staticPlayerNameArray = ['Dealer', 'Player1', 'Player2', 'Player3', 'Player4', 'Player5', 'Player6'];
 var topRightHelper = document.getElementById('toprighthelper');
 var bottomLeftHelper = document.getElementById('bottomlefthelper');
+var topLeftHelper = document.getElementById('toplefthelper');
 Player.computer0Hand = document.getElementById('dealerhand');
 Player.computer1Hand = document.getElementById('computer1Hand');
 Player.computer2Hand = document.getElementById('computer2Hand');
@@ -162,9 +164,9 @@ Card.dealerFunction = function(){
   Player.playerObjectArray[Player.currentUser()].handCards.push(Card.randomCard());
   Player.playerObjectArray[Player.currentUser()].handCards.push(Card.randomCard());
 
-  for (var j = 0; j < 7; j++){
-    Card.printCard(eval('Player.computer' + j + 'Hand'), Player.playerObjectArray[j].handCards[1].suit , Player.playerObjectArray[j].handCards[1].name);
-  }
+
+  Card.printCard(Player.computer0Hand, Player.playerObjectArray[0].handCards[1].suit , Player.playerObjectArray[0].handCards[1].name);
+
 
   Card.printCard(playerHand, Player.playerObjectArray[Player.currentUser()].handCards[0].suit, Player.playerObjectArray[Player.currentUser()].handCards[0].name);
   Card.printCard(playerHand, Player.playerObjectArray[Player.currentUser()].handCards[1].suit, Player.playerObjectArray[Player.currentUser()].handCards[1].name);
@@ -174,27 +176,32 @@ Card.dealerFunction = function(){
   }
 };
 
+Player.randomHit = function(){
+  return Math.floor(Math.random() * (10)) + 11;
+};
+
 //Iterates on dealer and all standin players to play their hand by vegas dealer rules
 Player.computerPlaysHand = function(){
   for(var i = 0; i < 7; i++){
     Player.handSum(i);
-    while (Player.playerObjectArray[i].handValue < 17){
+    while (Player.playerObjectArray[i].handValue < Player.hitNumArr[i]){
       Player.playerObjectArray[i].handCards.push(Card.randomCard());
       if (i === 0){
-        Card.printCard(eval('Player.computer' + i + 'Hand'), Player.playerObjectArray[i].handCards[Player.playerObjectArray[i].handCards.length - 1].suit, Player.playerObjectArray[i].handCards[Player.playerObjectArray[i].handCards.length - 1].name);
+        Card.printCard((Player.computer0Hand), Player.playerObjectArray[i].handCards[Player.playerObjectArray[i].handCards.length - 1].suit, Player.playerObjectArray[i].handCards[Player.playerObjectArray[i].handCards.length - 1].name);
       }
       Player.handSum(i);
     }
   }
 };
 
-//function that reEvaluates the hand's value
 Player.handSum = function(i){
   Player.playerObjectArray[i].handValue = 0;
   // console.log('reset is Success');
+  // console.log(Player.playerObjectArray[i]);
   for(var j in Player.playerObjectArray[i].handCards){
     // console.log('sums handCards');
     Player.playerObjectArray[i].handValue += Player.playerObjectArray[i].handCards[j].value;
+    // console.log(Player.playerObjectArray[i].handValue);
   }
   if (Player.playerObjectArray[i].handValue > 21){
     for (var k in Player.playerObjectArray[i].handCards){
@@ -207,12 +214,16 @@ Player.handSum = function(i){
   }
 };
 
+
+
+//function that reEvaluates the hand's value
+
 Player.userGuideRules = function(){
   topRightHelper.innerHTML = null;
   bottomLeftHelper.innerHTML = null;
   Player.handSum(Player.currentUser());
   if([2,3].includes(Player.playerObjectArray[0].handCards[1].value)){
-    newElement('p', 'When the dealer has a 2 or a 3 showing, their odds of busting are about 36%. The player advantage percentage in this case is about 11%.', topRightHelper);
+    newElement('p', 'When the dealer has a 2 or a 3 showing, their odds of busting are about 36%. The player has an 11% higher chance to win with any hand', topRightHelper);
     if(Player.playerObjectArray[Player.currentUser()].handValue < 13){
       newElement('p', 'The probability of busting on a 12 is 31%. Anything lower than that is impossible to bust on. You should hit!', bottomLeftHelper);
     }else{
@@ -220,7 +231,7 @@ Player.userGuideRules = function(){
     }
   }
   if([4,5,6].includes(Player.playerObjectArray[0].handCards[1].value)){
-    newElement('p', 'When the dealer has a 4, 5 or 6 showing, their odds of busting are about 41%. The player advantage percentage in this case is about 22%.', topRightHelper);
+    newElement('p', 'When the dealer has a 4, 5 or 6 showing, their odds of busting are about 41%. The player has an 22% higher chance to win with any hand.', topRightHelper);
     if(Player.playerObjectArray[Player.currentUser()].handValue < 12){
       newElement('p', 'The probability of busting on a hit is 0%. You should hit!', bottomLeftHelper);
     }else{
@@ -228,7 +239,7 @@ Player.userGuideRules = function(){
     }
   }
   if([7,8,9].includes(Player.playerObjectArray[0].handCards[1].value)){
-    newElement('p', 'When the dealer has a 7, 8 or 9 showing, their odds of busting are about 24%. The player advantage percentage in this case declines rapidly from 14% to -4%.', topRightHelper);
+    newElement('p', 'When the dealer has a 7, 8 or 9 showing, their odds of busting are about 24%. The player has an 14%, 5%, and -4% higher chance to win with any hand.', topRightHelper);
     if(Player.playerObjectArray[Player.currentUser()].handValue < 17){
       newElement('p', 'The probability of busting on a hit is less than 62%. However, there\'s a good chance the dealer will beat you if you don\'t. You should hit!', bottomLeftHelper);
     }else{
@@ -236,7 +247,7 @@ Player.userGuideRules = function(){
     }
   }
   if([10,11].includes(Player.playerObjectArray[0].handCards[1].value)){
-    newElement('p', 'When the dealer has a card of value 10 or 11 showing, their odds of busting are about 21%, unless they have an ace. In this case their odds are busting are about 12%. The player advantage percentage in this case is about -17%.', topRightHelper);
+    newElement('p', 'When the dealer has a card of value 10 or 11 showing, their odds of busting are about 21%, unless they have an ace. With an Ace, their odds are busting are about 12%. The player has a 22% higher chance to lose with any hand.', topRightHelper);
     if(Player.playerObjectArray[Player.currentUser()].handValue < 17 ){
       newElement('p', 'The probability of busting on a hit is less than 62%. However, there\'s a good chance the dealer will beat you if you don\'t. You should hit!', bottomLeftHelper);
     }else{
@@ -247,7 +258,7 @@ Player.userGuideRules = function(){
 
 function newElement(type, content, parent){
   var newEl = document.createElement(type);
-  newEl.textContent = content;
+  newEl.innerHTML = content;
   parent.appendChild(newEl);
 };
 
@@ -261,30 +272,75 @@ Player.gameResolution = function(){
   Player.computerPlaysHand();
   Player.dealerCardWriter();
   Player.handSum(Player.currentUser());
-  if ((Player.playerObjectArray[Player.currentUser()].handValue > 21) || (Player.playerObjectArray[0].handValue > Player.playerObjectArray[Player.currentUser()].handValue)){
+  if (Player.playerObjectArray[Player.currentUser()].handValue > 21){
     newElement('h1', 'You Lose!', results);
     Player.playerObjectArray[Player.currentUser()].gameOutcome.push('loss');
     Player.playerObjectArray[Player.currentUser()].losses++;
     Player.playerObjectArray[Player.currentUser()].gamesPlayed++;
-  }else if(Player.playerObjectArray[0].handValue > 21){
+    if (Player.playerObjectArray[Player.currentUser()].gamesPlayed % 10 === 0){
+      newElement('p', '<a href="stats.html">Hey! Make sure to check out the stats page to see your results!</a>', results);
+    }
+  } else if ((Player.playerObjectArray[0].handValue > Player.playerObjectArray[Player.currentUser()].handValue) && (!(Player.playerObjectArray[0].handValue > 21))){
+    newElement('h1', 'You Lose!', results);
+    Player.playerObjectArray[Player.currentUser()].gameOutcome.push('loss');
+    Player.playerObjectArray[Player.currentUser()].losses++;
+    Player.playerObjectArray[Player.currentUser()].gamesPlayed++;
+    if (Player.playerObjectArray[Player.currentUser()].gamesPlayed % 10 === 0){
+      newElement('p', '<a href="stats.html">Hey! Make sure to check out the stats page to see your results!</a>', results);
+    }
+  } else if (Player.playerObjectArray[0].handValue > 21){
     newElement('h1', 'You Win!', results);
     Player.playerObjectArray[Player.currentUser()].gameOutcome.push('win');
     Player.playerObjectArray[Player.currentUser()].wins++;
     Player.playerObjectArray[Player.currentUser()].gamesPlayed++;
-  }else if((Player.playerObjectArray[Player.currentUser()].handValue <= 21) && (Player.playerObjectArray[0].handValue < Player.playerObjectArray[Player.currentUser()].handValue)){
+    if (Player.playerObjectArray[Player.currentUser()].gamesPlayed % 10 === 0){
+      newElement('p', '<a href="stats.html">Hey! Make sure to check out the stats page to see your results!</a>', results);
+    }
+  } else if ((Player.playerObjectArray[Player.currentUser()].handValue <= 21) && (Player.playerObjectArray[0].handValue < Player.playerObjectArray[Player.currentUser()].handValue)){
     newElement('h1', 'You Win!', results);
     Player.playerObjectArray[Player.currentUser()].gameOutcome.push('win');
     Player.playerObjectArray[Player.currentUser()].wins++;
     Player.playerObjectArray[Player.currentUser()].gamesPlayed++;
-  }else if(Player.playerObjectArray[0].handValue === Player.playerObjectArray[Player.currentUser()].handValue){
+    if (Player.playerObjectArray[Player.currentUser()].gamesPlayed % 10 === 0){
+      newElement('p', '<a href="stats.html">Hey! Make sure to check out the stats page to see your results!</a>', results);
+    }
+  } else if (Player.playerObjectArray[0].handValue === Player.playerObjectArray[Player.currentUser()].handValue){
     newElement('h1', 'A Tie!', results);
     Player.playerObjectArray[Player.currentUser()].gameOutcome.push('tie');
     Player.playerObjectArray[Player.currentUser()].ties++;
     Player.playerObjectArray[Player.currentUser()].gamesPlayed++;
+    if (Player.playerObjectArray[Player.currentUser()].gamesPlayed % 10 === 0){
+      newElement('p', '<a href="stats.html">Hey! Make sure to check out the stats page to see your results!</a>', results);
+    }
   } else {
     console.log('Congrats, you found the condition under which our game doesn\'t work!');
   }
+  Player.computerStoragePush();
   localStorage.playerObjectArray = JSON.stringify(Player.playerObjectArray);
+};
+
+Player.computerStoragePush = function(){
+  for (var i = 1; i < 7; i++){
+    Player.handSum(i);
+    if (Player.playerObjectArray[i].handValue > 21){
+      Player.playerObjectArray[i].losses++;
+      Player.playerObjectArray[i].gamesPlayed++;
+    } else if ((Player.playerObjectArray[0].handValue > Player.playerObjectArray[i].handValue) && (!(Player.playerObjectArray[0].handValue > 21))){
+      Player.playerObjectArray[i].losses++;
+      Player.playerObjectArray[i].gamesPlayed++;
+    } else if (Player.playerObjectArray[0].handValue > 21){
+      Player.playerObjectArray[i].wins++;
+      Player.playerObjectArray[i].gamesPlayed++;
+    } else if ((Player.playerObjectArray[i].handValue <= 21) && (Player.playerObjectArray[0].handValue < Player.playerObjectArray[i].handValue)){
+      Player.playerObjectArray[i].wins++;
+      Player.playerObjectArray[i].gamesPlayed++;
+    } else if (Player.playerObjectArray[0].handValue === Player.playerObjectArray[i].handValue){
+      Player.playerObjectArray[i].ties++;
+      Player.playerObjectArray[i].gamesPlayed++;
+    } else {
+      console.log('Congrats, you found the condition under which our game doesn\'t work!');
+    }
+  }
 };
 
 Player.hitHandler = function(){
@@ -311,15 +367,15 @@ Player.splitHandler = function(){
 //deals out cards and turns on hit/stay
 Player.dealHandler = function(){
   results.innerHTML = null;
+  topLeftHelper.innerHTML = null;
+  topLeftHelper.innerHTML = '<img src="../resources/logo_large.png" width="100px">';
   dealButton.style.display = 'none';
   hitButton.style.display = 'block';
   stayButton.style.display = 'block';
   splitButton.style.display = 'none';
   Card.cardCreator();
   playerHand.innerHTML = null;
-  for (var i in staticPlayerNameArray){
-    eval('Player.computer' + i + 'Hand').innerHTML = null;
-  }
+  Player.computer0Hand.innerHTML = null;
   console.log('deal');
   Player.toggleGameEventListenersOn();
   Card.dealerFunction();
@@ -343,4 +399,20 @@ Player.toggleGameEventListenersOff = function(){
   hitButton.removeEventListener('click', Player.hitHandler);
   stayButton.removeEventListener('click', Player.stayHandler);
   splitButton.removeEventListener('click', Player.splitHandler);
+};
+
+Player.demiRules = function(){
+  Player.handSum(6);
+  if([2,3].includes(Player.playerObjectArray[0].handCards[1].value)){
+    return 13;
+  }
+  if([4,5,6].includes(Player.playerObjectArray[0].handCards[1].value)){
+    return 12;
+  }
+  if([7,8,9].includes(Player.playerObjectArray[0].handCards[1].value)){
+    return 17;
+  }
+  if([10,11].includes(Player.playerObjectArray[0].handCards[1].value)){
+    return 17;
+  }
 };

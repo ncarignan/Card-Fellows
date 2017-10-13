@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <title>Card-Fellows: Stats Page</title>
   <link rel="stylesheet" type="text/css"  href="../styles/reset.css" />
-  <link id="theme" rel="stylesheet" type="text/css"  href="../styles/colors/light.css">
   <link rel="stylesheet" type="text/css" href="../styles/master.css" />
   <link rel="stylesheet" type="text/css" href="../styles/stats.css" />
+  <link id="theme" rel="stylesheet" type="text/css"  href="../styles/colors/light.css">
 </head>
-<body>
+<body class="o90">
   <header>
     <img src="../resources/logo_large.png" alt="" height="100px">
     <ul>
@@ -32,6 +32,23 @@
     <p id="trend" hidden>Hey, so you've been playing a while now. I hope you can see that even when you're playing to your best odds, the trend will even out towards winning about 50% of the time.</p>
   </article>
   <button id="delete" type="submit">Reset Current User History</button>
+  <section id="section2">
+    <h1>Computer Player Stats</h1>
+    <hr />
+    <ul id="compstats">
+    </ul>
+    <hr />
+  </section>
+  <article id="explainCompRules">
+    <p id="whatsgoingon">To the left are the other players at your table! They are each playing by slightly different rules. Hover over their names to see what rules they play by. Then you can see general trends based on how you might play the game.</p>
+    <p id="computer1explained" hidden>Ron always hits.</p>
+    <p id="computer2explained" hidden>Amanda always stays.</p>
+    <p id="computer3explained" hidden>Allie plays conservatively, and only hits if her hand adds up to less than 15.</p>
+    <p id="computer4explained" hidden>Gary plays liberally, always hitting when his hand adds up to less than 19.</p>
+    <p id="computer5explained" hidden>Dustin plays recklessly, and randomly hits or stays.</p>
+    <p id="computer6explained" hidden>Demi plays it smart, and follows our guide rules.</p>
+
+  </article>
   <script type="text/javascript" src="../scripts/themes.js"></script>
   <script type="text/javascript" src="../scripts/stats.js"></script>
   <script type="text/javascript" src="../scripts/delete.js"></script>

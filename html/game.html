@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <title>Card-Fellows: Game Page</title>
     <link rel="stylesheet" href="../styles/reset.css">
-    <link id="theme" rel="stylesheet" href="../styles/colors/light.css">
     <link rel="stylesheet" href="../styles/master.css">
     <link rel="stylesheet" href="../styles/game.css">
+    <link id="theme" rel="stylesheet" href="../styles/colors/light.css">
   </head>
   <body>
     <header>
@@ -17,23 +17,14 @@
         <li><a href="../index.html">Home</a></li>
       </ul>
     </header>
-
+    <h3>Dealer Hand</h3>
     <div>
-      <figure class="dealerHelper"><div id="toplefthelper" class="innerDealerHelper"></div></figure>
+      <figure class="dealerHelper"><div id="toplefthelper" class="innerDealerHelper"><img src="../resources/logo_large.png" width="100px"><p>Click "Deal" to get Started!</p></div></figure>
       <figure id="dealerhand"></figure>
       <figure class="dealerHelper"><div id="toprighthelper" class="innerDealerHelper"></div></figure>
     </div>
     <button id= "dealButton" type="button">Deal</button>
-    <figure id= "computerHands">
-      <ul>
-        <li id="computer1Hand"><img></li>
-        <li id="computer2Hand"><img></li>
-        <li id="computer3Hand"><img></li>
-        <li id="computer4Hand"><img></li>
-        <li id="computer5Hand"><img></li>
-        <li id="computer6Hand"><img></li>
-      </ul>
-    </figure>
+    <h3>Player Hand</h3>
     <div>
       <figure class="dealerHelper"><div id="bottomlefthelper" class="innerDealerHelper"></div></figure>
       <figure id = "playerhand"></figure>
@@ -46,9 +37,8 @@
         </figure>
 
     </div>
-    <button type="button">Hide/Show Help</button>
     <button id="delete" type="submit">Reset Current User History</button>
-    
+
     <script type="text/javascript" src="../scripts/themes.js"></script>
     <script type="text/javascript" src="../scripts/game.js"></script>
     <script type="text/javascript" src="../scripts/delete.js"></script>

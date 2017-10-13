@@ -1,5 +1,4 @@
 .o90 {
-  opacity: 0.7;
   color: rgb(150, 117, 171);
 }
 
@@ -9,4 +8,47 @@ html {
   background: -o-radial-gradient(rgb(21, 43, 85), rgb(37, 23, 88)); /* For Opera 11.6 to 12.0 */
   background: -moz-radial-gradient(rgb(21, 43, 85), rgb(37, 23, 88)); /* For Firefox 3.6 to 15 */
   background: radial-gradient(rgb(21, 43, 85), rgb(37, 23, 88)); /* Standard syntax */
+}
+
+input {
+  background-color: rgb(37, 23, 88);
+}
+
+nav a:hover {
+  color: rgb(147, 118, 172);
+}
+
+a, button {
+  background-color : rgba(0,0,0,0);
+  color: rgb(150, 117, 171);
+  border-radius: .3em;
+  border-width: 0px;
+  box-shadow: 0 0 3px rgb(124, 252, 255);
+}
+
+a:hover, button:hover {
+  background-color : rgba(150, 117, 171, .3);
+}
+
+ul>li>a {
+  box-shadow: 0 0 0px rgb(124, 252, 255);
+}
+
+/*Card Stuff*/
+
+.outerbox, .outerboxr, .dealerHelper, .innerDealerHelper,  .innerbox, .innerboxr {
+  color: rgba(255,255,255,0.4);
+  background-color: rgb(37, 23, 88);
+  background: -webkit-linear-gradient(left top, rgb(31, 53, 95), rgb(47, 33, 98)); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, rgb(31, 53, 95), rgb(47, 33, 98)); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, rgb(31, 53, 95), rgb(47, 33, 98)); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right, rgb(31, 53, 95), rgb(47, 33, 98)); /* Standard syntax */
+  border-color: rgba(255,255,255,0.4);
+}
+
+.innerboxr, .outerboxr {
+  box-shadow: 0 0 3px rgb(124, 252, 255);
+  text-shadow: 0 0 3px rgb(124, 252, 255);
+  color: rgba(124, 252, 255, 0.7);
+  border-color: rgba(124, 252, 255, 0.7);
 }
