@@ -1,3 +1,10 @@
+*{
+  font-family: 'Libre Baskerville', serif;
+}
+
+h1, h2, h3, h4, h5, h6{
+  font-family: 'Signika Negative', sans-serif;
+}
 body {
   width: 960px;
   margin: 0 auto;
