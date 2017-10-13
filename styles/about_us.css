@@ -15,6 +15,15 @@ header>img {
 	margin: 0 auto;
 }
 
+h4{
+	display:inline-block;
+	padding-right:40px;
+	padding-left: 50px;
+	font-size: 18px;
+	padding-top:5px;
+	padding-bottom: 5px;
+}
+
 hr {
 	height: 10px;
 	border: 0;
