@@ -74,6 +74,22 @@ button {
   margin: 25px auto;
 }
 
+#paragraph {
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+#list ul {
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+#list ul li {
+  padding-top: 10px;
+  text-align: left;
+  line-height: 20px;
+}
+
 /*Card Stuff*/
 
 .outerbox {
