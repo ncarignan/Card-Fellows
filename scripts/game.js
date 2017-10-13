@@ -1,7 +1,7 @@
 'use strict';
 
-Player.hitNumArr = [17, 21, 0, 15, 18, Player.randomHit, Player.demiRules];
-//declare button id's
+
+//declare globals
 var hitButton = document.getElementById('hitButton');
 var stayButton = document.getElementById('stayButton');
 var splitButton = document.getElementById('splitButton');
@@ -22,6 +22,7 @@ Player.computer6Hand = document.getElementById('computer6Hand');
 splitButton.style.display = 'none';
 hitButton.style.display = 'none';
 stayButton.style.display = 'none';
+Player.hitNumArr = [17, 21, 0, 15, 18];
 
 //constructor for players
 function Player(name, handLoc){
@@ -39,7 +40,7 @@ function Player(name, handLoc){
 }
 
 (Player.localStorageAlign = function(){
-//checks to see if dealer and standinplayers were created and creates if needed
+//checks to see if dealer and standin players were created and creates if needed
   if(!localStorage.playerObjectArray){
     Player.playerObjectArray = [];
     Player.staticPlayerNameArray = function(){
@@ -57,6 +58,11 @@ function Player(name, handLoc){
     // console.log('creating new user object');
     new Player(localStorage.userName, playerHand);
   }
+})();
+
+//Defines a random hit spot for computer player 5 //Dustin is a wildcard!
+(Player.randomHit = function(){
+  Player.hitNumArr[5] = Math.floor(Math.random() * (10)) + 11;
 })();
 
 //function to store the i variable of the current user for reference in Player.playerObjectArray[i];
@@ -176,24 +182,7 @@ Card.dealerFunction = function(){
   }
 };
 
-Player.randomHit = function(){
-  return Math.floor(Math.random() * (10)) + 11;
-};
-
-//Iterates on dealer and all standin players to play their hand by vegas dealer rules
-Player.computerPlaysHand = function(){
-  for(var i = 0; i < 7; i++){
-    Player.handSum(i);
-    while (Player.playerObjectArray[i].handValue < Player.hitNumArr[i]){
-      Player.playerObjectArray[i].handCards.push(Card.randomCard());
-      if (i === 0){
-        Card.printCard((Player.computer0Hand), Player.playerObjectArray[i].handCards[Player.playerObjectArray[i].handCards.length - 1].suit, Player.playerObjectArray[i].handCards[Player.playerObjectArray[i].handCards.length - 1].name);
-      }
-      Player.handSum(i);
-    }
-  }
-};
-
+//Sums the cards in a player's hand
 Player.handSum = function(i){
   Player.playerObjectArray[i].handValue = 0;
   // console.log('reset is Success');
@@ -214,10 +203,38 @@ Player.handSum = function(i){
   }
 };
 
+//Iterates on dealer and all standin players to play their hand by vegas dealer rules
+Player.computerPlaysHand = function(){
+  for(var i = 0; i < 7; i++){
+    Player.handSum(i);
+    while (Player.playerObjectArray[i].handValue < Player.hitNumArr[i]){
+      Player.playerObjectArray[i].handCards.push(Card.randomCard());
+      if (i === 0){
+        Card.printCard((Player.computer0Hand), Player.playerObjectArray[i].handCards[Player.playerObjectArray[i].handCards.length - 1].suit, Player.playerObjectArray[i].handCards[Player.playerObjectArray[i].handCards.length - 1].name);
+      }
+      Player.handSum(i);
+    }
+  }
+};
 
+//Defines the rules by which computer player 6 plays by
+Player.demiRules = function(){
+  Player.handSum(6);
+  if([2,3].includes(Player.playerObjectArray[0].handCards[1].value)){
+    Player.hitNumArr[6] = 13;
+  }
+  if([4,5,6].includes(Player.playerObjectArray[0].handCards[1].value)){
+    Player.hitNumArr[6] = 12;
+  }
+  if([7,8,9].includes(Player.playerObjectArray[0].handCards[1].value)){
+    Player.hitNumArr[6] = 17;
+  }
+  if([10,11].includes(Player.playerObjectArray[0].handCards[1].value)){
+    Player.hitNumArr[6] = 17;
+  }
+};
 
 //function that reEvaluates the hand's value
-
 Player.userGuideRules = function(){
   topRightHelper.innerHTML = null;
   bottomLeftHelper.innerHTML = null;
@@ -256,6 +273,7 @@ Player.userGuideRules = function(){
   }
 };
 
+//Helper function for creating new elements
 function newElement(type, content, parent){
   var newEl = document.createElement(type);
   newEl.innerHTML = content;
@@ -269,6 +287,7 @@ Player.gameResolution = function(){
   stayButton.style.display = 'none';
   splitButton.style.display = 'none';
   Player.toggleGameEventListenersOff();
+  Player.demiRules();
   Player.computerPlaysHand();
   Player.dealerCardWriter();
   Player.handSum(Player.currentUser());
@@ -319,6 +338,7 @@ Player.gameResolution = function(){
   localStorage.playerObjectArray = JSON.stringify(Player.playerObjectArray);
 };
 
+//Push the computer players' data into localStorage
 Player.computerStoragePush = function(){
   for (var i = 1; i < 7; i++){
     Player.handSum(i);
@@ -343,6 +363,7 @@ Player.computerStoragePush = function(){
   }
 };
 
+//Handles what happens when you hit
 Player.hitHandler = function(){
   console.log('hit');
   splitButton.style.display = 'none';
@@ -356,10 +377,12 @@ Player.hitHandler = function(){
   Player.userGuideRules();
 };
 
+//Handles what happens when you stay (hint: the game ends)
 Player.stayHandler = function(){
   Player.gameResolution();
 };
 
+//Handles what happens when you try and split when you get doubles
 Player.splitHandler = function(){
   alert('"Adobe Flash Player" is out-of-date.\n\nThe version of this plug-in on your computer does not incude the latest security updates and is blocked. To continue using "Adobe Flash Player", download an update from Adobe.');
 };
@@ -382,12 +405,14 @@ Player.dealHandler = function(){
   Player.userGuideRules();
 };
 
+//Writes the dealer's cards upon completion of the game
 Player.dealerCardWriter = function(){
   Player.computer0Hand.innerHTML = null;
   for (var i = 0; i < Player.playerObjectArray[0].handCards.length; i++)
     Card.printCard(Player.computer0Hand, Player.playerObjectArray[0].handCards[i].suit, Player.playerObjectArray[0].handCards[i].name);
 };
 
+//Event listeners and the functions related to them
 dealButton.addEventListener('click', Player.dealHandler);
 
 Player.toggleGameEventListenersOn = function(){
@@ -399,20 +424,4 @@ Player.toggleGameEventListenersOff = function(){
   hitButton.removeEventListener('click', Player.hitHandler);
   stayButton.removeEventListener('click', Player.stayHandler);
   splitButton.removeEventListener('click', Player.splitHandler);
-};
-
-Player.demiRules = function(){
-  Player.handSum(6);
-  if([2,3].includes(Player.playerObjectArray[0].handCards[1].value)){
-    return 13;
-  }
-  if([4,5,6].includes(Player.playerObjectArray[0].handCards[1].value)){
-    return 12;
-  }
-  if([7,8,9].includes(Player.playerObjectArray[0].handCards[1].value)){
-    return 17;
-  }
-  if([10,11].includes(Player.playerObjectArray[0].handCards[1].value)){
-    return 17;
-  }
 };
