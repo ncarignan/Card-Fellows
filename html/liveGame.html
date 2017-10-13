@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../styles/master.css">
     <link rel="stylesheet" href="../styles/liveGame.css">
     <link id="theme" rel="stylesheet" href="../styles/colors/light.css">
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Signika+Negative" rel="stylesheet">
   </head>
   <body>
     <header>
@@ -20,23 +21,29 @@
     </header>
     <form id="calculator">
       <div>
-        <figure class="dealerHelper"><div id="toplefthelper" class="innerDealerHelper"></div></figure>
+        <figure class="dealerHelper"><div id="toplefthelper" class="innerDealerHelper"><img src="../resources/logo_large.png" width="100px" id="helperLogo"><p>Input the visible card values and hit analyze to get started!</p></div></figure>
         <figure id="dealerdiv">
           <div class="outerbox">
-              <input class="innerbox" type="number" min="2" max="11" name="dealerhand" id="dealerhand">
+              <div class="innerbox">
+                <img src="../resources/logo_large.png" id ="cardBackLogo">
+              </div>
+          </div>
+          <div class="outerbox">
+              <input class="innerbox" type="number" min="2" max="11" name="dealerhand" id="dealerhand" required>
           </div>
         </figure>
         <figure class="dealerHelper"><div id="toprighthelper" class="innerDealerHelper"></div></figure>
       </div>
       <button id= "analyzeButton" type="submit">Analyze</button>
+      <button id="resetButton" >Reset</button>
       <div>
         <figure class="dealerHelper"><div id="bottomlefthelper" class="innerDealerHelper"></div></figure>
         <figure id = "playerhand">
           <div class="outerbox">
-              <input class="innerbox" type="number" min="1" max="11" name="playerhand0" id="playerhand0">
+              <input class="innerbox" type="number" min="1" max="11" name="playerhand0" id="playerhand0" required>
           </div>
           <div class="outerbox">
-              <input class="innerbox" type="number" min="1" max="11" name="playerhand1" id="playerhand1">
+              <input class="innerbox" type="number" min="1" max="11" name="playerhand1" id="playerhand1" required>
           </div>
         </figure>
         <figure id="buttonHolder">
