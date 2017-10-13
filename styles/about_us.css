@@ -46,7 +46,7 @@ ul {
 
 li {
   padding: 1em 2.75em;
-  margin: 0;
+  margin: 0 auto;
   display: inline;
 }
 
@@ -59,6 +59,10 @@ section>section>p {
 img {
 	width: 250px;
 	height: auto;
+}
+
+#profiles {
+	text-align: center;
 }
 
 #fade {

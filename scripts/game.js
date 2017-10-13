@@ -12,6 +12,7 @@ var staticPlayerNameArray = ['Dealer', 'Player1', 'Player2', 'Player3', 'Player4
 var topRightHelper = document.getElementById('toprighthelper');
 var bottomLeftHelper = document.getElementById('bottomlefthelper');
 var topLeftHelper = document.getElementById('toplefthelper');
+var deleteButton = document.getElementById('delete');
 Player.computer0Hand = document.getElementById('dealerhand');
 Player.computer1Hand = document.getElementById('computer1Hand');
 Player.computer2Hand = document.getElementById('computer2Hand');
@@ -55,7 +56,6 @@ function Player(name, handLoc){
 
   // if username does not have an object, creates one with name of username
   if(localStorage.userName && !localStorage.playerObjectArray.includes(localStorage.userName)){
-    // console.log('creating new user object');
     new Player(localStorage.userName, playerHand);
   }
 })();
@@ -73,6 +73,12 @@ Player.currentUser = function(){
     }
   }
 };
+
+if (Player.playerObjectArray[Player.currentUser()].gamesPlayed === 0){
+  deleteButton.style.display = 'none';
+} else {
+  deleteButton.style.display = 'block';
+}
 
 //constructor function for cards
 Card.all = [];
@@ -359,18 +365,23 @@ Player.computerStoragePush = function(){
     if (Player.playerObjectArray[i].handValue > 21){
       Player.playerObjectArray[i].losses++;
       Player.playerObjectArray[i].gamesPlayed++;
+      Player.playerObjectArray[0].gamesPlayed++;
     } else if ((Player.playerObjectArray[0].handValue > Player.playerObjectArray[i].handValue) && (!(Player.playerObjectArray[0].handValue > 21))){
       Player.playerObjectArray[i].losses++;
       Player.playerObjectArray[i].gamesPlayed++;
+      Player.playerObjectArray[0].gamesPlayed++;
     } else if (Player.playerObjectArray[0].handValue > 21){
       Player.playerObjectArray[i].wins++;
       Player.playerObjectArray[i].gamesPlayed++;
+      Player.playerObjectArray[0].gamesPlayed++;
     } else if ((Player.playerObjectArray[i].handValue <= 21) && (Player.playerObjectArray[0].handValue < Player.playerObjectArray[i].handValue)){
       Player.playerObjectArray[i].wins++;
       Player.playerObjectArray[i].gamesPlayed++;
+      Player.playerObjectArray[0].gamesPlayed++;
     } else if (Player.playerObjectArray[0].handValue === Player.playerObjectArray[i].handValue){
       Player.playerObjectArray[i].ties++;
       Player.playerObjectArray[i].gamesPlayed++;
+      Player.playerObjectArray[0].gamesPlayed++;
     } else {
       console.log('Congrats, you found the condition under which our game doesn\'t work!');
     }
