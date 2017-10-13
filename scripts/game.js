@@ -1,5 +1,6 @@
 'use strict';
 
+Player.hitNumArr = [17, 21, 0, 15, 18, Player.randomHit, Player.demiRules];
 //declare button id's
 var hitButton = document.getElementById('hitButton');
 var stayButton = document.getElementById('stayButton');
@@ -196,9 +197,11 @@ Player.computerPlaysHand = function(){
 Player.handSum = function(i){
   Player.playerObjectArray[i].handValue = 0;
   // console.log('reset is Success');
+  // console.log(Player.playerObjectArray[i]);
   for(var j in Player.playerObjectArray[i].handCards){
     // console.log('sums handCards');
     Player.playerObjectArray[i].handValue += Player.playerObjectArray[i].handCards[j].value;
+    // console.log(Player.playerObjectArray[i].handValue);
   }
   if (Player.playerObjectArray[i].handValue > 21){
     for (var k in Player.playerObjectArray[i].handCards){
@@ -211,23 +214,7 @@ Player.handSum = function(i){
   }
 };
 
-Player.ourRules = function(){
-  Player.handSum(6);
-  if([2,3].includes(Player.playerObjectArray[0].handCards[1].value)){
-    return 13;
-  }
-  if([4,5,6].includes(Player.playerObjectArray[0].handCards[1].value)){
-    return 12;
-  }
-  if([7,8,9].includes(Player.playerObjectArray[0].handCards[1].value)){
-    return 17;
-  }
-  if([10,11].includes(Player.playerObjectArray[0].handCards[1].value)){
-    return 17;
-  }
-};
 
-Player.hitNumArr = [17, 21, 0, 15, 18, Player.randomHit(), Player.ourRules()];
 
 //function that reEvaluates the hand's value
 
@@ -412,4 +399,20 @@ Player.toggleGameEventListenersOff = function(){
   hitButton.removeEventListener('click', Player.hitHandler);
   stayButton.removeEventListener('click', Player.stayHandler);
   splitButton.removeEventListener('click', Player.splitHandler);
+};
+
+Player.demiRules = function(){
+  Player.handSum(6);
+  if([2,3].includes(Player.playerObjectArray[0].handCards[1].value)){
+    return 13;
+  }
+  if([4,5,6].includes(Player.playerObjectArray[0].handCards[1].value)){
+    return 12;
+  }
+  if([7,8,9].includes(Player.playerObjectArray[0].handCards[1].value)){
+    return 17;
+  }
+  if([10,11].includes(Player.playerObjectArray[0].handCards[1].value)){
+    return 17;
+  }
 };
